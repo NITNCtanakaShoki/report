@@ -34,10 +34,10 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ github.ref }}
-          release_name: Release ${{ github.ref }}
+          tag_name: ${{ steps.get_tag.outputs.tag }}
+          release_name: Release ${{ steps.get_tag.outputs.tag }}
           body: |
-            Compiled PDF ${{ github.ref }}
+            Compiled PDF ${{ steps.get_tag.outputs.tag }}
           draft: false
           prerelease: false
 
