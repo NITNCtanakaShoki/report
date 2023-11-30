@@ -1,0 +1,9 @@
+version: '3.9'
+
+services:
+  tex:
+    image: paperist/texlive-ja:latest
+    volumes:
+      - .:/workdir
+    working_dir: /workdir
+    command: sh -c 'latexmk -C main.tex && latexmk main.tex && latexmk -c main.tex'
