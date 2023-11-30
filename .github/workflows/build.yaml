@@ -28,26 +28,7 @@ jobs:
       - name: Rename PDF
         run: mv main.pdf report_${{ steps.date.outputs.date }}_${{ steps.get_tag.outputs.tag }}.pdf
 
-      - name: Create Release
-        id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Release
+        uses: softprops/action-gh-release@v1
         with:
-          tag_name: ${{ steps.get_tag.outputs.tag }}
-          release_name: Release ${{ steps.get_tag.outputs.tag }}
-          body: |
-            Compiled PDF ${{ steps.get_tag.outputs.tag }}
-          draft: false
-          prerelease: false
-
-      - name: Upload Release Asset
-        id: upload_release_asset
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./report_${{ steps.date.outputs.date }}_${{ steps.get_tag.outputs.tag }}.pdf
-          asset_name: report_${{ steps.date.outputs.date }}_${{ steps.get_tag.outputs.tag }}.pdf
-          asset_content_type: application/pdf
+          files: report_${{ steps.date.outputs.date }}_${{ steps.get_tag.outputs.tag }}.pdf
