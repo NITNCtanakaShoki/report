@@ -30,33 +30,24 @@ jobs:
 
       - name: Create Release
         id: create_release
-        uses: actions/create-release@v1.0.0
+        uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag_name: ${{ github.ref }}
-          release_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          body: |
+            Compiled PDF ${{ github.ref }}
           draft: false
           prerelease: false
 
-      - name: Get url to upload to release from output
-        env:
-          url: ${{ steps.create_release.outputs.upload_url }}
-        run: |
-          mkdir artifact
-          echo $url > artifact/url.txt
-      - name: Upload artifact to share url with other jobs
-        uses: actions/upload-artifact@v1
-        with:
-          name: artifact
-          path: artifact/url.txt
-
-      - name: Upload PDF as Release Asset
-        uses: actions/upload-release-asset@v1.0.2
+      - name: Upload Release Asset
+        id: upload_release_asset
+        uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          upload_url: ${{ steps.get_url.outputs.upload_url }}
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: ./report_${{ steps.date.outputs.date }}_${{ steps.get_tag.outputs.tag }}.pdf
           asset_name: report_${{ steps.date.outputs.date }}_${{ steps.get_tag.outputs.tag }}.pdf
           asset_content_type: application/pdf
