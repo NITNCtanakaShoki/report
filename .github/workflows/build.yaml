@@ -1,0 +1,39 @@
+name: Build and Release PDF
+
+on:
+  push:
+    tags:
+      - '*'
+
+jobs:
+  build-and-upload:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Docker Compose
+        uses: docker/setup-buildx-action@v1
+
+      - run: docker-compose run tex
+
+      - name: Get the date in Japan timezone
+        id: date
+        run: echo "::set-output name=date::$(date +'%Y-%m-%d' -d 'TZ="Asia/Tokyo"')"
+
+      - name: Extract tag name
+        id: get_tag
+        run: echo "::set-output name=tag::${GITHUB_REF#refs/tags/}"
+
+      - name: Rename PDF
+        run: mv main.pdf report_${{ steps.date.outputs.date }}_${{ steps.get_tag.outputs.tag }}.pdf
+
+      - name: Upload PDF as Release Asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ github.event.release.upload_url }}
+          asset_path: ./report_${{ steps.date.outputs.date }}_${{ steps.get_tag.outputs.tag }}.pdf
+          asset_name: report_${{ steps.date.outputs.date }}_${{ steps.get_tag.outputs.tag }}.pdf
+          asset_content_type: application/pdf
