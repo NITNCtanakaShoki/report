@@ -4,3 +4,5 @@ $biber = 'biber %O --bblencoding=utf8 -u -U --output_safechars %B';
 $dvipdf = 'dvipdfmx %O -o %D %S';
 $makeindex = 'upmendex %O -o %D %S';
 $pdf_mode = 3;
+$ENV{TZ} = 'Asia/Tokyo';
+ensure_path('OSFONTDIR', './fonts');

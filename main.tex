@@ -1,35 +1,167 @@
-%#!pdflatex main.tex
-\documentclass[twocolumn]{article}
+\RequirePackage{plautopatch}
+\documentclass[dvipdfmx,uplatex,a4paper,10.5pt,oneside,onecolumn,openany]{jsbook}
+\setlength{\textwidth}{5cm} % テキスト幅の調整
+\setlength{\textheight}{1cm} % テキスト高さの調整
 \usepackage{graphicx}
+\usepackage{listings}
+\usepackage{datetime}
 
-\title{Test Report}
-\author{pman0214}
+% List
+\usepackage{enumitem}
+\renewcommand{\labelitemi}{$\bullet$}
+\renewcommand{\labelitemii}{$\circ$}
+\renewcommand{\labelitemiii}{$\bullet$}
+\renewcommand{\labelitemiv}{$\circ$}
+
+%% Font Config
+\usepackage[deluxe]{otf}
+\usepackage[hiragino-highsierra-pron]{pxchfon}
+\usepackage[prefernoncjk]{pxcjkcat}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage{lmodern}
+\usepackage{fix-cm}
+\cjkcategory{sym18}{cjk}
+\cjkcategory{sym19}{cjk}
+
+%% Cites
+\usepackage{cite}
+\makeatletter
+\def\NAT@parse{\typeout{}}
+\makeatother
+
+%% Margin Config
+
+\usepackage[dvipdfm,margin=25mm]{geometry}
+\usepackage{setspace}
+\newcommand{\parasep}{\vspace*{3zh}}
+\setlength{\footskip}{30pt}
+\renewcommand{\baselinestretch}{1.25}
+\sloppy
+
+%% Link Config
+\PassOptionsToPackage{hyphens}{url}
+\usepackage[bookmarks=true,bookmarksnumbered=true,colorlinks=true,pdfusetitle=true]{hyperref}
+\hypersetup{
+    linkcolor=black,
+    citecolor=black,
+    filecolor=black,
+    urlcolor=black,
+    anchorcolor=black
+}
+
+%% Header Config
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\lhead{\gtfamily\sffamily\bfseries\upshape \leftmark}
+\chead{}
+\rhead{\gtfamily\sffamily\bfseries\upshape \rightmark}
+\fancyfoot[CE,CO]{\thepage}
+\fancypagestyle{plainhead}{%
+    \fancyhead{}
+    \renewcommand{\headrulewidth}{0pt}
+    \renewcommand{\footrulewidth}{0pt}}
+\renewcommand{\sfdefault}{phv}
+
+\makeatletter
+\def\mojiparline#1{
+    \newcounter{mpl}
+    \setcounter{mpl}{#1}
+    \@tempdima=\linewidth
+    \advance\@tempdima by-\value{mpl}zw
+    \addtocounter{mpl}{-1}
+    \divide\@tempdima by \value{mpl}
+    \advance\kanjiskip by\@tempdima
+    \advance\parindent by\@tempdima
+}
+\makeatother
+\def\linesparpage#1{
+    \baselineskip=\textheight
+    \divide\baselineskip by #1
+}
+
+% 一行あたり文字数の指定
+\mojiparline{70}
+% 1ページあたり行数の指定
+\linesparpage{37}
+
+%% Set date
+\year2021 \relax
+\month10 \relax
+
+%% Document Config
+\title{イベントソーシングの適用条件の検証}
+\author{田中 陽一朗}
 
 \begin{document}
-    \maketitle
-    \section{Introduction}
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in justo
-    semper, sagittis elit vel, eleifend arcu.
-    Phasellus accumsan id ipsum non varius.
-    Suspendisse nec nulla nunc.
-    Pellentesque rutrum commodo lacinia.
-    Sed molestie ullamcorper tellus, in aliquet mauris egestas non.
-    Maecenas sed lectus ac neque eleifend fermentum.
-    Donec id purus felis.
-    Nam ornare sagittis ullamcorper.
+    \begin{titlepage}
+        \centering
+        \vspace*{1cm}
 
-    Donec commodo enim nec leo tincidunt varius.
-    Aliquam vulputate sit amet nibh nec facilisis.
-    Aliquam lobortis nec urna vel convallis.
-    Fusce facilisis libero leo, sed pretium dui imperdiet id.
-    Duis in est et nunc molestie vestibulum vel eget nunc.
-    Suspendisse potenti.
-    Mauris scelerisque magna at ex scelerisque, vel tempus turpis eleifend.
-    Phasellus efficitur elementum ex vel ultrices.
-    Sed eget arcu magna.
-    Maecenas dignissim imperdiet lorem, sit amet gravida lorem bibendum at.
-    Aenean non blandit metus, id viverra velit.
-    Integer ut sapien sapien.
-    Sed quam nisi, vehicula quis nunc ullamcorper, molestie accumsan augue.rm
+        \Large
+        \textbf{研究年度: 2023}
+
+        \vspace{1.5cm}
+        \huge
+        \textbf{研究題目: イベントソーシングの適用条件の検証}
+
+        \vspace{1.5cm}
+        \Large
+        指導教員: 本間
+
+        \vfill
+
+        \Large
+        氏名: 田中陽一朗 \\
+        提出日: 2024年1月12日（水）
+
+        \vspace{1.5cm}
+        \large
+        奈良高専
+
+        \vspace{1cm}
+    \end{titlepage}
+    
+    \chapter{前書き}\label{ch:preface}
+
+    前書きを書きます。
+
+    \clearpage
+
+    第２章 理論（研究方法）
+    第３章 研究結果
+    第４章 考察（検討）
+    \chapter{理論}\label{ch:theory}
+
+    理論を書きます。
+
+    \clearpage
+
+    \chapter{研究結果}\label{ch:result}
+
+    研究結果を書きます。
+
+    \clearpage
+
+    \chapter{考察}\label{ch:consideration}
+
+    考察を書きます。
+
+    \clearpage
+
+    \chapter{あとがき}\label{ch:conclusion}
+
+    あとがきを書きます。
+
+    \clearpage
+
+    \chapter{謝辞}\label{ch:acknowledgement}
+
+    謝辞を書きます。
+
+    \clearpage
+
+    \chapter{文献}\label{ch:reference}
 
 \end{document}
