@@ -5,6 +5,7 @@
 \usepackage{graphicx}
 \usepackage{listings}
 \usepackage{datetime}
+\usepackage{subfiles}
 
 % List
 \usepackage{enumitem}
@@ -53,6 +54,7 @@
 
 %% Header Config
 \usepackage{fancyhdr}
+\usepackage{subfiles}
 \pagestyle{fancy}
 \lhead{\gtfamily\sffamily\bfseries\upshape \leftmark}
 \chead{}
@@ -95,43 +97,10 @@
 \author{田中 陽一朗}
 
 \begin{document}
-    \begin{titlepage}
-        \centering
-        \vspace*{1cm}
-
-        \Large
-        \textbf{研究年度: 2023}
-
-        \vspace{1.5cm}
-        \huge
-        \textbf{研究題目: イベントソーシングの適用条件の検証}
-
-        \vspace{1.5cm}
-        \Large
-        指導教員: 本間
-
-        \vfill
-
-        \Large
-        氏名: 田中陽一朗 \\
-        提出日: 2024年1月12日（水）
-
-        \vspace{1.5cm}
-        \large
-        奈良高専
-
-        \vspace{1cm}
-    \end{titlepage}
+    \subfile{src/表紙/表紙}
     
-    \chapter{前書き}\label{ch:preface}
+    \subfile{src/1-前書き/1-前書き}
 
-    前書きを書きます。
-
-    \clearpage
-
-    第２章 理論（研究方法）
-    第３章 研究結果
-    第４章 考察（検討）
     \chapter{理論}\label{ch:theory}
 
     理論を書きます。
