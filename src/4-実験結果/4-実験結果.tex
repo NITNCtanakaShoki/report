@@ -2,18 +2,56 @@
 
 \begin{document}
     \section{実験結果}\label{sec:result}
+    
+    \subsection{ストリーミング処理}\label{subsec:result-streaming}
+    \subsubsection{イベント数と処理時間}\label{subsubsec:result-streaming-time}
+    \subsubsection{イベント数とCPU使用率}\label{subsubsec:result-streaming-cpu}
+    \subsubsection{イベント数とメモリ使用量}\label{subsubsec:result-streaming-memory}
+    \subsubsection{イベント数とディスク使用量}\label{subsubsec:result-streaming-disk}
+    \subsubsection{イベント数とネットワークの使用量}\label{subsubsec:result-streaming-network}
+    \subsubsection{イベント数とプロセス数}\label{subsubsec:result-streaming-process}
 
-    ここでは、本論文の目的である、イベントソーシングにおけるイベント数に対するCPU使用率、メモリ使用率、ディスク使用率の関係を調査するための実験方法について説明する。
+    \subsection{チャンク処理}\label{subsec:result-chunk}
+    \subsubsection{イベント数と処理時間}\label{subsubsec:result-chunk-time}
+    \subsubsection{イベント数とCPU使用率}\label{subsubsec:result-chunk-cpu}
+    \subsubsection{イベント数とメモリ使用量}\label{subsubsec:result-chunk-memory}
+    \subsubsection{イベント数とディスク使用量}\label{subsubsec:result-chunk-disk}
+    \subsubsection{イベント数とネットワークの使用量}\label{subsubsec:result-chunk-network}
+    \subsubsection{イベント数とプロセス数}\label{subsubsec:result-chunk-process}
 
-    \subfile{実験環境/実験環境}
+    \subsection{OFFSETでのページング処理}\label{subsec:result-paging-offset}
+    \subsubsection{イベント数と処理時間}\label{subsubsec:result-paging-offset-time}
+    \subsubsection{イベント数とCPU使用率}\label{subsubsec:result-paging-offset-cpu}
+    \subsubsection{イベント数とメモリ使用量}\label{subsubsec:result-paging-offset-memory}
+    \subsubsection{イベント数とディスク使用量}\label{subsubsec:result-paging-offset-disk}
+    \subsubsection{イベント数とネットワークの使用量}\label{subsubsec:result-paging-offset-network}
+    \subsubsection{イベント数とプロセス数}\label{subsubsec:result-paging-offset-process}
 
-    \subfile{実験手順/実験手順}
+    \subsection{ページ末イベントを利用したページング処理}\label{subsec:result-paging-last}
+    \subsubsection{イベント数と処理時間}\label{subsubsec:result-paging-last-time}
+    \subsubsection{イベント数とCPU使用率}\label{subsubsec:result-paging-last-cpu}
+    \subsubsection{イベント数とメモリ使用量}\label{subsubsec:result-paging-last-memory}
+    \subsubsection{イベント数とディスク使用量}\label{subsubsec:result-paging-last-disk}
+    \subsubsection{イベント数とネットワークの使用量}\label{subsubsec:result-paging-last-network}
+    \subsubsection{イベント数とプロセス数}\label{subsubsec:result-paging-last-process}
 
-    \subfile{イベントソーシングを行うWeb APIの構築/イベントソーシングを行うWeb APIの構築}
+    \subsection{並行化したページ末イベントを利用したページング処理}\label{subsec:result-paging-last-async}
+    \subsubsection{イベント数と処理時間}\label{subsubsec:result-paging-last-async-time}
+    \subsubsection{イベント数とCPU使用率}\label{subsubsec:result-paging-last-async-cpu}
+    \subsubsection{イベント数とメモリ使用量}\label{subsubsec:result-paging-last-async-memory}
+    \subsubsection{イベント数とディスク使用量}\label{subsubsec:result-paging-last-async-disk}
+    \subsubsection{イベント数とネットワークの使用量}\label{subsubsec:result-paging-last-async-network}
+    \subsubsection{イベント数とプロセス数}\label{subsubsec:result-paging-last-async-process}
 
-    \subfile{計測を行うためのツールの構築/計測を行うためのツールの構築}
-
-    \subfile{結果の算出方法/結果の算出方法}
+    \subsection{各手法の比較}\label{subsec:result-cpu}
+    \subsubsection{イベント数と処理時間}\label{subsubsec:result-time}
+    \subsubsection{イベント数とcpu使用率}\label{subsubsec:result-cpu}
+    \subsubsection{イベント数とメモリ使用量}\label{subsubsec:result-memory}
+    \subsubsection{イベント数とディスク使用量}\label{subsubsec:result-disk}
+    \subsubsection{イベント数とネットワークの使用量}\label{subsubsec:result-network}
+    \subsubsection{イベント数とプロセス数}\label{subsubsec:result-process}
+    \subsubsection{indexを使用しない場合の各手法の比較}\label{subsubsec:result-without-index}
+    \subsubsection{他ユーザーのイベント数が多い場合の各手法の比較}\label{subsubsec:result-other-user}
 
     \clearpage
 
