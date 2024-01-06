@@ -1,11 +1,12 @@
 \RequirePackage{plautopatch}
-\documentclass[dvipdfmx,uplatex,a4paper,10pt,oneside,onecolumn,openany]{jsbook}
-\setlength{\textwidth}{5cm} % テキスト幅の調整
-\setlength{\textheight}{1cm} % テキスト高さの調整
+\documentclass[dvipdfmx,uplatex,a4paper,12pt,oneside,onecolumn,openany]{jsarticle}
+\setlength{\fullwidth}{\oddsidemargin}
+\setlength{\oddsidemargin}{\evensidemargin}
+\setlength{\evensidemargin}{\fullwidth}
+\setlength{\fullwidth}{\textwidth}
 \usepackage{graphicx}
 \usepackage{listings}
 \usepackage{datetime}
-\usepackage{subfiles}
 
 % List
 \usepackage{enumitem}
@@ -34,7 +35,7 @@
 
 %% Margin Config
 
-\usepackage[dvipdfm,margin=25mm]{geometry}
+\usepackage[margin=25mm]{geometry}
 \usepackage{setspace}
 \newcommand{\parasep}{\vspace*{3zh}}
 \setlength{\footskip}{30pt}
@@ -83,9 +84,9 @@
     \divide\baselineskip by #1
 }
 
-% 一行あたり文字数の指定
+% 1行あたりの文字数を70に設定
 \mojiparline{70}
-% 1ページあたり行数の指定
+% 1ページあたりの行数を37に設定
 \linesparpage{37}
 
 %% Set date
@@ -106,32 +107,30 @@
 
     \subfile{src/2-用語/2-用語}
 
-    \clearpage
+    \subfile{src/3-実験方法/3-実験方法}
 
-    \chapter{研究結果}\label{ch:result}
-
-    研究結果を書きます。
+    \subfile{src/4-実験結果/4-実験結果}
 
     \clearpage
 
-    \chapter{考察}\label{ch:consideration}
+    \section{考察}\label{sec:consideration}
 
     考察を書きます。
 
     \clearpage
 
-    \chapter{あとがき}\label{ch:conclusion}
+    \section{あとがき}\label{sec:conclusion}
 
     あとがきを書きます。
 
     \clearpage
 
-    \chapter{謝辞}\label{ch:acknowledgement}
+    \section{謝辞}\label{sec:acknowledgement}
 
     謝辞を書きます。
 
     \clearpage
 
-    \chapter{文献}\label{ch:reference}
+    \section{文献}\label{sec:reference}
 
 \end{document}
