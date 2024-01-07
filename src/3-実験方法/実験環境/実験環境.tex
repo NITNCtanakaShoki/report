@@ -3,6 +3,10 @@
 \begin{document}
     \subsection{実験環境}\label{subsec:method-environment}
 
-    実験器具やソフトウェアのバージョン等を記載する。
+    本研究では、実験に以下のコンピュータ設定を使用した。使用したコンピュータは研究室にある1台である。
+
+    \subfile{表:実験に使用したコンピュータのスペック/表:実験に使用したコンピュータのスペック}
+
+    実験では、コンピュータにDockerをインストールし、CPUやメモリを制限した状態の仮想コンテナ上で実験対象となるWeb APIサーバーを動作させた。Dockerで使用したデータベースイメージは\texttt{postgres:16-alpine}であり、Web APIサーバーは\texttt{swift:5.8-jammy}でビルドし、\texttt{swift:5.8-jammy-slim}で実行した。計測に使用したツールはSwiftバージョン5.9.2を使用してビルドおよび実行した。
 
 \end{document}
