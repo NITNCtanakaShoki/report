@@ -1,0 +1,27 @@
+\documentclass[../../../../main]{subfiles}
+
+\begin{document}
+    \begin{mdframed}
+        \begin{minted}[breaklines, linenos]{sql}
+Gather Merge  (cost=132972.28..226942.64 rows=805404 width=44) (actual time=239.493..359.567 rows=1000000 loops=1)
+  Workers Planned: 2
+  Workers Launched: 2
+  ->  Sort  (cost=131972.25..132979.01 rows=402702 width=44) (actual time=221.289..245.291 rows=333333 loops=3)
+"        Sort Key: date, id"
+        Sort Method: external merge  Disk: 20640kB
+        Worker 0:  Sort Method: external merge  Disk: 18088kB
+        Worker 1:  Sort Method: external merge  Disk: 18056kB
+        ->  Parallel Seq Scan on send_events  (cost=0.00..82092.00 rows=402702 width=44) (actual time=4.075..177.917 rows=333333 loops=3)
+              Filter: ((from_username = 'user1'::text) OR (to_username = 'user1'::text))
+              Rows Removed by Filter: 1333333
+Planning Time: 0.735 ms
+JIT:
+  Functions: 6
+"  Options: Inlining false, Optimization false, Expressions true, Deforming true"
+"  Timing: Generation 0.761 ms, Inlining 0.000 ms, Optimization 1.024 ms, Emission 11.086 ms, Total 12.871 ms"
+Execution Time: 385.642 ms
+        \end{minted}
+    \end{mdframed}
+    \captionof{figure}{ストリーミング処理とチャンク処理で使用するSQL文のEXPLAIN ANALYZE結果}
+    \label{fig:streaming-chunk-sql-explain}
+\end{document}

@@ -1,0 +1,14 @@
+\documentclass[../../../../main]{subfiles}
+
+\begin{document}
+    \begin{mdframed}
+        \begin{minted}[breaklines, linenos]{sql}
+CREATE INDEX send_events_index_1
+    ON send_events (date, id, from_username, to_username, date, id);
+CREATE INDEX send_events_index_2
+    ON send_events (from_username, to_username, date, id);
+        \end{minted}
+    \end{mdframed}
+    \captionof{figure}{Web APIサーバーのINDEX定義}
+    \label{fig:web_api-index-definication}
+\end{document}

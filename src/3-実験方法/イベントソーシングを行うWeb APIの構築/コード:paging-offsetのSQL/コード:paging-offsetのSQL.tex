@@ -1,0 +1,20 @@
+\documentclass[../../../../main]{subfiles}
+
+\begin{document}
+    \begin{mdframed}
+        \begin{minted}[breaklines, linenos]{sql}
+SELECT "send_events"."id" AS "send_events_id",
+       "send_events"."from_username" AS "send_events_from_username",
+       "send_events"."to_username" AS "send_events_to_username",
+       "send_events"."point" AS "send_events_point",
+       "send_events"."date" AS "send_events_date"
+  FROM "send_events"
+ WHERE ("send_events"."from_username" = ? OR "send_events"."to_username" = ?)
+ ORDER BY "send_events"."date" ASC, "send_events"."id" ASC
+ LIMIT ?
+OFFSET ?
+        \end{minted}
+    \end{mdframed}
+    \captionof{figure}{OFFSETでのページング処理で使用するSQL文}
+    \label{fig:paging-offset-sql}
+\end{document}

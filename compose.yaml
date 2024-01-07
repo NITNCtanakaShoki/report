@@ -8,4 +8,4 @@ services:
     volumes:
       - .:/workdir
     working_dir: /workdir
-    command: sh -c 'latexmk -C main.tex && latexmk main.tex && latexmk -c main.tex'
+    command: sh -c 'latexmk -C main.tex && latexmk -shell-escape main.tex && latexmk -c main.tex'
