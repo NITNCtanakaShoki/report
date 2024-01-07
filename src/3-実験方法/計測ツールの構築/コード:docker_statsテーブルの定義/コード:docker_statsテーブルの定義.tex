@@ -1,0 +1,30 @@
+\documentclass[../../../../main]{subfiles}
+
+\begin{document}
+    \begin{mdframed}
+        \begin{minted}[breaklines, linenos]{sql}
+CREATE TABLE docker_stats (
+    id             UUID             NOT NULL PRIMARY KEY,
+    name           TEXT             NOT NULL,
+    cpu_percent    DOUBLE PRECISION NOT NULL,
+    mem_usage      DOUBLE PRECISION NOT NULL,
+    mem_usage_unit TEXT             NOT NULL,
+    mem_limit      DOUBLE PRECISION NOT NULL,
+    mem_limit_unit TEXT             NOT NULL,
+    mem_percent    DOUBLE PRECISION NOT NULL,
+    net_in         DOUBLE PRECISION NOT NULL,
+    net_in_unit    TEXT             NOT NULL,
+    net_out        DOUBLE PRECISION NOT NULL,
+    net_out_unit   TEXT             NOT NULL,
+    block_in       DOUBLE PRECISION NOT NULL,
+    block_in_unit  TEXT             NOT NULL,
+    block_out      DOUBLE PRECISION NOT NULL,
+    block_out_unit TEXT             NOT NULL,
+    pids           BIGINT           NOT NULL,
+    date           TIMESTAMP WITH TIME ZONE NOT NULL
+);
+        \end{minted}
+    \end{mdframed}
+    \captionof{figure}{docker\_statsテーブルの定義}
+    \label{fig:docker_stats-table-definication}
+\end{document}

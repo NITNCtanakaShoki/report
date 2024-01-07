@@ -1,0 +1,36 @@
+\documentclass[../../../../main]{subfiles}
+
+\begin{document}
+    \begin{mdframed}
+        \begin{minted}[breaklines, linenos]{sql}
+create table _fluent_enums
+(
+    id     UUID NOT NULL PRIMARY KEY,
+    name   TEXT NOT NULL,
+    "case" TEXT NOT NULL,
+    CONSTRAINT "uq:_fluent_enums.name+_fluent_enums.case"
+    UNIQUE (name, "case")
+);
+CREATE TABLE measures (
+    id                   UUID                     NOT NULL PRIMARY KEY,
+    cpu_percent          BIGINT                   NOT NULL,
+    memory_mb            BIGINT                   NOT NULL,
+    way                  "measure-way"            NOT NULL,
+    chunk                BIGINT,
+    start                timestamp with time zone NOT NULL,
+    "end"                timestamp with time zone NOT NULL,
+    user_event_count     BIGINT                   NOT NULL,
+    all_event_count      BIGINT                   NOT NULL,
+    enable_index         boolean                  NOT NULL,
+    point                BIGINT                   NOT NULL,
+    server_time          DOUBLE PRECISION         NOT NULL,
+    created_at           timestamp with time zone NOT NULL,
+    db_cpu_percent       BIGINT                   NOT NULL,
+    db_memory_mb         BIGINT                   NOT NULL,
+    concurrent_req_count BIGINT                   NOT NULL
+);
+        \end{minted}
+    \end{mdframed}
+    \captionof{figure}{measuresテーブルの定義}
+    \label{fig:measures-table-definication}
+\end{document}
