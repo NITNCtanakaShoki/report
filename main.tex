@@ -7,6 +7,8 @@
 \usepackage{graphicx}
 \usepackage{listings}
 \usepackage{datetime}
+\usepackage{float}
+\usepackage{subcaption}
 
 % Source Code
 \usepackage{minted}
@@ -19,6 +21,10 @@
 \renewcommand{\labelitemii}{$\circ$}
 \renewcommand{\labelitemiii}{$\bullet$}
 \renewcommand{\labelitemiv}{$\circ$}
+
+% PDF Plots
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
 
 %% Font Config
 \usepackage[deluxe]{otf}
@@ -40,7 +46,7 @@
 
 %% Margin Config
 
-\usepackage[margin=25mm]{geometry}
+\usepackage[lines=37, textwidth=35zw, margin=25mm]{geometry}
 \usepackage{setspace}
 \newcommand{\parasep}{\vspace*{3zh}}
 \setlength{\footskip}{30pt}
@@ -73,26 +79,13 @@
 \renewcommand{\sfdefault}{phv}
 
 \makeatletter
-\def\mojiparline#1{
-    \newcounter{mpl}
-    \setcounter{mpl}{#1}
-    \@tempdima=\linewidth
-    \advance\@tempdima by-\value{mpl}zw
-    \addtocounter{mpl}{-1}
-    \divide\@tempdima by \value{mpl}
-    \advance\kanjiskip by\@tempdima
-    \advance\parindent by\@tempdima
+\newcommand{\subsubsubsection}{\@startsection{paragraph}{4}{\z@}%
+{1.0\Cvs \@plus.5\Cdp \@minus.2\Cdp}%
+{.1\Cvs \@plus.3\Cdp}%
+{\reset@font\sffamily\normalsize}
 }
 \makeatother
-\def\linesparpage#1{
-    \baselineskip=\textheight
-    \divide\baselineskip by #1
-}
-
-% 1行あたりの文字数を70に設定
-\mojiparline{70}
-% 1ページあたりの行数を37に設定
-\linesparpage{37}
+\setcounter{secnumdepth}{4}
 
 %% Set date
 \year2021 \relax
