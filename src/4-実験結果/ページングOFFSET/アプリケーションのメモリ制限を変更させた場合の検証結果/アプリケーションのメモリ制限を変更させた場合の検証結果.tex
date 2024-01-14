@@ -13,36 +13,17 @@
 
     図\ref{fig:paging-offset-change-app-memory-limit-server-time-app_4_db_1_1024}より、仮想メモリを使用していないと推測されている75万ほどのイベント数ではほとんどCPU制限が100\%のときと変化がないが、仮想メモリを使い出したと推測される75万のイベント数以降は、サーバー内処理時間が増減していることがわかる。しかし、制限されるCPU量には関係が見られないため、ディスクの状態によって仮想メモリの速度がかわっているのではないかと推測される。
 
-    \subsubsubsection{アプリケーションサーバーのCPU使用率}
+    \subsubsubsection{メモリ使用量}
 
-    図\ref{fig:paging-offset-change-app-memory-limit-app-cpu-app_4_db_1_1024}に、メモリ制限を変更した際のアプリケーションサーバーコンテナのCPU使用率を記す。
-
-    \subfile{図:app-CPU/図:app-CPU}
-
-    図\ref{fig:paging-offset-change-app-memory-limit-app-cpu-app_4_db_1_1024}と図\ref{fig:paging-offset-change-app-memory-limit-db-cpu-app_4_db_1_1024}、共にアプリケーションサーバーのメモリ制限を変更したことによる変化は見られなかった。
-
-    \subsubsubsection{アプリケーションサーバーのメモリ使用量}
-
-    図\ref{fig:paging-offset-change-app-memory-limit-app-memory-app_4_db_1_1024}に、メモリ制限を変更させた際のアプリケーションサーバーコンテナのメモリ使用量を記す。
+    図\ref{fig:paging-offset-change-app-memory-limit-app-memory-app_4_db_1_1024}に、CPU制限を変化させた際のサーバー内処理時間を示す。
 
     \subfile{図:app-memory/図:app-memory}
 
-
-    図\ref{fig:paging-offset-change-app-memory-limit-app-memory-app_4_db_1_1024}より、比較的にメモリ使用量が増加しているものの、200\%と300\%と400\%で変化がないため、100\%の際のハズレ値の部分が原因であると考えられる。
-
-
-    \subsubsubsection{ディスクI/O}
-
-    図\ref{fig:paging-offset-change-app-memory-limit-app-disk-in-app_4_db_1_1024}に、メモリ制限を変更させた際のアプリケーションサーバーコンテナのディスク書き込み量を、図\ref{fig:paging-offset-change-app-memory-limit-app-disk-out-app_4_db_1_1024}にはディスク読み込み量を示す。
+    \subsubsubsection{アプリケーションのディスク使用量}
 
     \subfile{図:app-disk-in/図:app-disk-in}
-    \subfile{図:app-disk-out/図:app-disk-out}
 
-    \subsubsubsection{ネットワークI/O}
 
-    図\ref{fig:paging-offset-change-app-memory-limit-app-net-in-app_4_db_1_1024}に、メモリ制限を変更させた際のアプリケーションサーバーコンテナのネットワーク受信量を、図\ref{fig:paging-offset-change-app-memory-limit-app-net-out-app_4_db_1_1024}にはネットワーク送信量を示す。
 
-    \subfile{図:app-net-in/図:app-net-in}
-    \subfile{図:app-net-out/図:app-net-out}
 
 \end{document}
