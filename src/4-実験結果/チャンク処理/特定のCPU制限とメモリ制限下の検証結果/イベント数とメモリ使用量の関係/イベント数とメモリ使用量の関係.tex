@@ -1,0 +1,14 @@
+\documentclass[../../../../../main]{subfiles}
+
+\begin{document}
+    \subsubsubsection{イベント数とメモリ使用量の関係}\label{subsubsec:result-chunk-only-limit-memory}
+
+    ここでは、イベント数の増加に対するメモリ使用量の推移を記す。図\ref{fig:stream-memory-app_1_1024-db_1_1024}に実験結果を示す。
+
+    \subfile{図:stream-memory-app_1_1024-db_1_1024/図:stream-memory-app_1_1024-db_1_1024}
+
+    図\ref{fig:stream-memory-app_1_1024-db_1_1024}から、アプリケーションサーバーのメモリ使用量がイベント数が0から4万程度まではあまり変わらず、4万から75万程度まではイベント数にメモリ使用量が比例し、75万以降は一定になっている。この75万以降のメモリ使用量は1024MBであり、コンテナに設定されたメモリ上限に張り付いている状態であった。
+
+    このため、CPUやレスポンス時間から推測されたボトルネックの出現はメモリにあるという説が有力になる。
+
+\end{document}

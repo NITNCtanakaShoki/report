@@ -9,3 +9,11 @@ services:
       - .:/workdir
     working_dir: /workdir
     command: sh -c 'latexmk -C main.tex && latexmk -shell-escape main.tex && latexmk -c main.tex'
+  sub:
+    image: my-texlive:latest
+    build:
+      context: .
+    volumes:
+      - .:/workdir
+    working_dir: /workdir
+    command: sh -c 'latexmk -C sub.tex && latexmk -shell-escape sub.tex && latexmk -c sub.tex'

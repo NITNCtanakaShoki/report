@@ -1,0 +1,14 @@
+\documentclass[../../../../../main]{subfiles}
+
+\begin{document}
+    \subsubsubsection{イベント数と処理時間、レスポンス時間の関係}\label{subsubsec:result-chunk-only-limit-time}
+
+
+    ここでは、イベント数の増加に対する処理時間とレスポンスの関係を記す。図\ref{fig:stream-time-app_1_1024-db_1_1024}は、この設定下での計測結果を示している。
+
+    \subfile{図:stream-time-app_1_1024-db_1_1024/図:stream-time-app_1_1024-db_1_1024}
+
+    図\ref{fig:stream-time-app_1_1024-db_1_1024}から、サーバー内処理時間とレスポンス時間には顕著な差が見られないことが明らかである。サーバー内処理時間とレスポンス時間の差の平均は、\texttt{0.22745}秒である。
+
+    一方、イベント数が0から75万までの範囲では、レスポンス時間はほぼ比例して増加するが、それ以上のイベント数になるとレスポンス時間の増加が急激になる。このことから、70万イベントを超えた辺りで新たなボトルネックが発生している可能性が高いと考えられる。
+\end{document}
