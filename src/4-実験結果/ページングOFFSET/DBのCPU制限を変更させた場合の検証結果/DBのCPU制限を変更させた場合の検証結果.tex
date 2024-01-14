@@ -1,0 +1,18 @@
+\documentclass[../../../../main]{subfiles}
+
+\begin{document}
+    \subsubsection{DBサーバーのCPU制限を変更させた場合の検証結果}\label{subsubsec:result-paging-offset-change-db-cpu}
+
+    ここでは、Web APIサーバーのアプリケーションサーバーコンテナメモリ制限1024MBとし、DBサーバーのCPU制限を100\%、メモリ制限を1024MBとして、DBサーバーのCPU制限を200\%、300\%、400\%と変更させた場合の実験結果を示す。
+
+    \subsubsubsection{サーバー内処理時間}
+
+    図\ref{fig:paging-offset-change-db-cpu-limit-server-time-app_4_8192-db_1024}に、CPU制限を変化させた際のサーバー内処理時間を示す。
+
+    \subfile{図:app-server-time/図:app-server-time}
+
+    \subsubsubsection{CPU使用率}
+
+    \subfile{図:db-CPU/図:db-CPU}
+
+\end{document}
