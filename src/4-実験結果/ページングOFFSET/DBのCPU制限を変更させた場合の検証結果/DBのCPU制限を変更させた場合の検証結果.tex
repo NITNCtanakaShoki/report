@@ -1,24 +1,26 @@
 \documentclass[../../../../main]{subfiles}
 
 \begin{document}
-    \subsubsection{DBサーバーのCPU制限を変更させた場合の検証結果}\label{subsubsec:result-paging-offset-change-db-cpu}
+    \subsubsection{DBサーバーのCPU制限を変更した場合の検証結果}\label{subsubsec:result-paging-offset-change-db-cpu}
 
-    Web APIサーバーのアプリケーションサーバーコンテナのCPU制限を400\%、メモリ制限8192MBとし、DBサーバーのメモリ制限を1024MBとして、DBサーバーコンテナのCPU制限を200\%、300\%、400\%と変更させた場合の実験結果を示す。
+    本セクションでは、Web APIサーバーのアプリケーションサーバーコンテナにCPU制限400\%、メモリ制限8192MBを設定し、DBサーバーのメモリ制限を1024MBに固定した上で、DBサーバーコンテナのCPU制限を200\%、300\%、400\%に変更した
+
+    際の実験結果を報告する。
 
     \subsubsubsection{サーバー内処理時間}
 
-    図\ref{fig:paging-offset-change-db-cpu-limit-server-time-app_4_8192-db_1024}に、CPU制限を変化させた際のサーバー内処理時間を示す。
+    図\ref{fig:paging-offset-change-db-cpu-limit-server-time-app_4_8192-db_1024}では、DBサーバーのCPU制限を変更した際のサーバー内処理時間の変化を示している。
 
     \subfile{図:app-server-time/図:app-server-time}
 
-    DBサーバーのCPU制限がサーバー内処理時間に与える影響は確認できなかった。
+    この結果から、DBサーバーのCPU制限の変更がサーバー内処理時間に顕著な影響を与えることは確認されなかった。
 
     \subsubsubsection{CPU使用率}
 
-    図\ref{fig:paging-offset-change-db-cpu-limit-db-cpu-app_4_8192-db_1024}にCPU制限を変化させた際のDBサーバーコンテナのCPU使用率を示す。
+    図\ref{fig:paging-offset-change-db-cpu-limit-db-cpu-app_4_8192-db_1024}では、変更されたCPU制限によるDBサーバーコンテナのCPU使用率の変動を示す。
 
     \subfile{図:db-CPU/図:db-CPU}
 
-    DBサーバーのCPU制限がDBサーバーコンテナのCPU使用率に与える影響は確認できなかった。その他の計測事項においても、CPU制限を変化させても影響がなかったため結果は省略する。
+    ここでも、DBサーバーコンテナのCPU使用率において、CPU制限の変更が有意な影響を及ぼすことは確認されなかった。その他の計測事項に関しても、CPU制限の変更が影響を及ぼさないことが観察されたため、その結果はここでは省略する。
 
 \end{document}
