@@ -3,7 +3,7 @@
 \begin{document}
     \subsubsection{DBサーバーのCPU制限を変更させた場合の検証結果}\label{subsubsec:result-streaming-change-db-cpu}
 
-    ここでは、Web APIサーバーのアプリケーションサーバーコンテナメモリ制限1024MBとし、DBサーバーのCPU制限を100\%、メモリ制限を1024MBとして、アプリケーションサーバーのCPU制限を200\%、300\%、400\%と変更させた場合の実験結果を示す。
+    ここでは、Web APIサーバーのアプリケーションサーバーコンテナのCPU制限を400\%、メモリ制限8192MBとし、DBサーバーのモリ制限を1024MBとして、DBサーバーコンテナのCPU制限を200\%、300\%、400\%と変更させた場合の実験結果を示す。
 
     \subsubsubsection{サーバー内処理時間}
 
@@ -11,7 +11,7 @@
 
     \subfile{図:app-server-time/図:app-server-time}
 
-    図\ref{fig:stream-change-db-cpu-limit-server-time-app_4_8192-db_1024}より、仮想メモリを使用していないと推測されている75万ほどのイベント数ではほとんどCPU制限が100\%のときと変化がないが、仮想メモリを使い出したと推測される75万のイベント数以降は、サーバー内処理時間が増減していることがわかる。しかし、制限されるCPU量には関係が見られないため、ディスクの状態によって仮想メモリの速度がかわっているのではないかと推測される。
+    図\ref{fig:stream-change-db-cpu-limit-server-time-app_4_8192-db_1024}から、DBサーバーコンテナのCPU制限に関わらずサーバー内処理時間はイベント数に比例していることが確認できる。このことから、DBサーバーでは増加したCPUを利用していない、またはDBサーバーの速度が速くサーバー内処理時間に影響をほとんど与えていないことがわかる。
 
     \subsubsubsection{アプリケーションサーバーのCPU使用率}
 
@@ -21,7 +21,7 @@
 
     \subfile{図:db-CPU/図:db-CPU}
 
-    図\ref{fig:stream-change-db-cpu-limit-app-cpu-app_4_8192-db_1024}と図\ref{fig:stream-change-db-cpu-limit-db-cpu-app_4_8192-db_1024}、共にアプリケーションサーバーのCPU制限を変更したことによる変化は見られなかった。
+    図\ref{fig:stream-change-db-cpu-limit-app-cpu-app_4_8192-db_1024}からDBサーバーコンテナのCPU制限にアプリケーションコンテナのCPU使用率に関係性はなく、図\ref{fig:stream-change-db-cpu-limit-db-cpu-app_4_8192-db_1024}からDBサーバーは増加したCPUを利用していないことがわかる。
 
     \subsubsubsection{アプリケーションサーバーのメモリ使用量}
 
@@ -31,9 +31,7 @@
 
     \subfile{図:db-memory/図:db-memory}
 
-    図\ref{fig:stream-change-db-cpu-limit-app-memory-app_4_8192-db_1024}より、比較的にメモリ使用量が増加しているものの、200\%と300\%と400\%で変化がないため、100\%の際のハズレ値の部分が原因であると考えられる。
-
-    また、図\ref{fig:stream-change-db-cpu-limit-db-memory-app_4_8192-db_1024}においては、CPU制限が200\%以上の場合と比較してCPU制限が100\%の際にメモリ使用量が60万付近のイベント数移行急激に増加していることがわかる。しかし、原因を推測するには至らなかった。
+    図から、ずれはあるもののCPU使用率はメモリ使用量に影響していないと判断される。
 
     \subsubsubsection{ディスクI/O}
 
@@ -42,10 +40,12 @@
     \subfile{図:app-disk-in/図:app-disk-in}
     \subfile{図:app-disk-out/図:app-disk-out}
 
-    図\ref{fig:stream-change-db-cpu-limit-db-disk-in-app_4_8192-db_1024}と図\ref{fig:stream-change-db-cpu-limit-db-disk-out-app_4_8192-db_1024}に、CPU制限を変更させた際のDBサーバーコンテナのディスク書き込み量とディスク読み込み量を示す。
+    図からアプリケーションサーバーには全く影響がないことが確認できる。
 
     \subfile{図:db-disk-in/図:db-disk-in}
     \subfile{図:db-disk-out/図:db-disk-out}
+
+    図から、DBサーバーのCPU使用可能量とディスクI/Oには関係性がないことが確認できる。
 
     \subsubsubsection{ネットワークI/O}
 
@@ -53,5 +53,7 @@
 
     \subfile{図:app-net-in/図:app-net-in}
     \subfile{図:app-net-out/図:app-net-out}
+
+    図から、DBの使用可能なCPU量がネットワークには影響がないことが確認できる。
 
 \end{document}
