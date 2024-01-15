@@ -49,29 +49,4 @@
 
     図\ref{fig:each-paging-app-disk-in-app_1_1024-db_1_1024}から、各ページング手法でディスク書き込み量に変化はなく、全て仮想メモリを使用していることがわかる。
 
-    図\ref{fig:each-paging-app-disk-out-app_1_1024-db_1_1024}に、イベント数に対するDBサーバーコンテナのメモリ使用量の関係を示す。
-
-    \subfile{図:detail-app-disk-out/図:detail-app-disk-out}
-
-    図\ref{fig:each-paging-app-disk-out-app_1_1024-db_1_1024}からレスポンスタイムはイベント数に応じて指数関数的に増加していることが10ごとにページングした場合から観測できる。また、ページあたりのイベント数が多ければ多いほど緩やかに増加することがわかる。
-
-    図\ref{fig:each-paging-db-disk-in-app_1_1024-db_1_1024}に、イベント数に対するアプリケーションサーバーコンテナのディスク書き込み量の関係を示す。
-
-    \subfile{図:detail-db-disk-in/図:detail-db-disk-in}
-
-    図\ref{fig:each-paging-db-disk-in-app_1_1024-db_1_1024}からレスポンスタイムはイベント数に応じて指数関数的に増加していることが10ごとにページングした場合から観測できる。また、ページあたりのイベント数が多ければ多いほど緩やかに増加することがわかる。
-
-    図\ref{fig:each-paging-db-disk-out-app_1_1024-db_1_1024}に、イベント数に対するDBサーバーコンテナのメモリ使用量の関係を示す。
-
-    \subfile{図:detail-db-disk-out/図:detail-db-disk-out}
-
-    図\ref{fig:each-paging-db-disk-out-app_1_1024-db_1_1024}からレスポンスタイムはイベント数に応じて指数関数的に増加していることが10ごとにページングした場合から観測できる。また、ページあたりのイベント数が多ければ多いほど緩やかに増加することがわかる。
-
-    \subsubsubsection{イベント数とネットワークI/Oの関係}\label{subsubsubsec:result-each-paging-only-limit-net-io}
-
-    図\ref{fig:each-paging-app-net-in-app_1_1024-db_1_1024}に、イベント数に対するアプリケーションサーバーコンテナのネットワーク受信量の関係を、図\ref{fig:each-paging-app-net-out-app_1_1024-db_1_1024}に、イベント数に対するアプリケーションサーバーコンテナのネットワーク送信量の関係を示す。
-
-    \subfile{図:detail-app-net-in/図:detail-app-net-in}
-    \subfile{図:detail-app-net-out/図:detail-app-net-out}
-
 \end{document}
