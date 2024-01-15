@@ -7,11 +7,11 @@
 
     \subsubsubsection{イベント数とサーバー内処理時間の関係}\label{subsubsubsec:result-paging-offset-only-limit-server-time}
 
-    図\ref{fig:paging-offset-server-time-app_1_1024-db_1_1024}に、イベント数に対するサーバー内処理時間の関係を示す。OFFSETを使用したページング処理では、どの程度のまとまりごとにに処理を行うか設定できるが、ここではイベント数を10、100、1000、10000ごとに処理を行った場合の結果を示す。
+    図\ref{fig:paging-offset-server-time-app_1_1024-db_1_1024}に、イベント数に対するサーバー内処理時間の関係を示す。ページング処理ではページあたりのイベント数を変更できるが、ここでは、10、100、1000、10000件のページあたりのイベント数で検証を行った。
 
     \subfile{図:detail-server-time/図:detail-server-time}
 
-    図\ref{fig:paging-offset-server-time-app_1_1024-db_1_1024}からサーバー内処理時間はイベント数に応じて指数関数的に増加していることが10ごとにページングした場合から観測できる。また、ページあたりのイベント数が多ければ多いほど緩やかに増加することがわかる。
+    図\ref{fig:paging-offset-server-time-app_1_1024-db_1_1024}からサーバー内処理時間はイベント数に対して指数関数的に大きくなるがページあたりのイベント数が大きくなるにつれて上昇が緩やかになることがわかる。
 
     \subsubsubsection{イベント数とCPU使用率の関係}\label{subsubsubsec:result-paging-offset-only-limit-cpu}
 
@@ -19,13 +19,13 @@
 
     \subfile{図:detail-app-cpu/図:detail-app-cpu}
 
-    図\ref{fig:paging-offset-app-cpu-app_1_1024-db_1_1024}からレスポンスタイムはイベント数に応じて指数関数的に増加していることが10ごとにページングした場合から観測できる。また、ページあたりのイベント数が多ければ多いほど緩やかに増加することがわかる。
+    ストリーミング処理やチャンク処理では100\%近くに張り付いていたCPU使用率がページング処理では張り付かないことがわかった。しかしCPU使用率が100\%に張り付かないのはリソースを活用できていないことを示しており、他にボトルネックが発生していることを示唆していると考えられる。
 
     図\ref{fig:paging-offset-db-cpu-app_1_1024-db_1_1024}に、イベント数に対するDBサーバーコンテナのCPU使用率の関係を示す。
 
     \subfile{図:detail-db-cpu/図:detail-db-cpu}
 
-    図\ref{fig:paging-offset-db-cpu-app_1_1024-db_1_1024}からレスポンスタイムはイベント数に応じて指数関数的に増加していることが10ごとにページングした場合から観測できる。また、ページあたりのイベント数が多ければ多いほど緩やかに増加することがわかる。
+    図\ref{fig:paging-offset-db-cpu-app_1_1024-db_1_1024}から、ストリーミング処理とは対照的にDBサーバーコンテナのCPU使用率は100\%に上がることが多く、DBサーバーコンテナのリソースが活用できていることがわかる。
 
     \subsubsubsection{イベント数とメモリ使用量の関係}\label{subsubsubsec:result-paging-offset-only-limit-mem}
 
@@ -33,39 +33,34 @@
 
     \subfile{図:detail-app-mem/図:detail-app-mem}
 
-    図\ref{fig:paging-offset-app-mem-app_1_1024-db_1_1024}からレスポンスタイムはイベント数に応じて指数関数的に増加していることが10ごとにページングした場合から観測できる。また、ページあたりのイベント数が多ければ多いほど緩やかに増加することがわかる。
+    図\ref{fig:paging-offset-app-mem-app_1_1024-db_1_1024}から使用メモリ量は、ページング処理を行なっているにも関わらずイベント数に対して比例していた。ここから、ページング処理以外にメモリを消費する処理が存在している可能性や、メモリリークを起こしている可能性があることがわかる。
 
     図\ref{fig:paging-offset-db-mem-app_1_1024-db_1_1024}に、イベント数に対するDBサーバーコンテナのメモリ使用量の関係を示す。
 
     \subfile{図:detail-db-mem/図:detail-db-mem}
 
-    図\ref{fig:paging-offset-db-mem-app_1_1024-db_1_1024}からレスポンスタイムはイベント数に応じて指数関数的に増加していることが10ごとにページングした場合から観測できる。また、ページあたりのイベント数が多ければ多いほど緩やかに増加することがわかる。
+    DBコンテナのメモリ使用量は、イベント数に対しておおよそ比例していることがわかる。
 
     \subsubsubsection{イベント数とディスクI/Oの関係}\label{subsubsubsec:result-paging-offset-only-limit-disk-io}
 
-    図\ref{fig:paging-offset-app-disk-in-app_1_1024-db_1_1024}に、イベント数に対するアプリケーションサーバーコンテナのディスク書き込み量の関係を示す。
+    図\ref{fig:paging-offset-app-disk-in-app_1_1024-db_1_1024}と図\ref{fig:paging-offset-app-disk-out-app_1_1024-db_1_1024}に、イベント数に対するアプリケーションサーバーコンテナのディスク書き込み量と読み込み量の関係を示す。
 
     \subfile{図:detail-app-disk-in/図:detail-app-disk-in}
-
-    図\ref{fig:paging-offset-app-disk-in-app_1_1024-db_1_1024}からレスポンスタイムはイベント数に応じて指数関数的に増加していることが10ごとにページングした場合から観測できる。また、ページあたりのイベント数が多ければ多いほど緩やかに増加することがわかる。
 
     図\ref{fig:paging-offset-app-disk-out-app_1_1024-db_1_1024}に、イベント数に対するDBサーバーコンテナのメモリ使用量の関係を示す。
 
     \subfile{図:detail-app-disk-out/図:detail-app-disk-out}
 
-    図\ref{fig:paging-offset-app-disk-out-app_1_1024-db_1_1024}からレスポンスタイムはイベント数に応じて指数関数的に増加していることが10ごとにページングした場合から観測できる。また、ページあたりのイベント数が多ければ多いほど緩やかに増加することがわかる。
+    ディスク読み書きはストリーミング処理と同じようにイベント数が75万件を超えたあたりから発生しており、仮想メモリを使用していると考えられる。
 
-    図\ref{fig:paging-offset-db-disk-in-app_1_1024-db_1_1024}に、イベント数に対するアプリケーションサーバーコンテナのディスク書き込み量の関係を示す。
+    図\ref{fig:paging-offset-db-disk-in-app_1_1024-db_1_1024}と図\ref{fig:paging-offset-db-disk-out-app_1_1024-db_1_1024}に、イベント数に対するアプリケーションサーバーコンテナのディスク書き込み量と読み込み量の関係を示す。
 
     \subfile{図:detail-db-disk-in/図:detail-db-disk-in}
 
-    図\ref{fig:paging-offset-db-disk-in-app_1_1024-db_1_1024}からレスポンスタイムはイベント数に応じて指数関数的に増加していることが10ごとにページングした場合から観測できる。また、ページあたりのイベント数が多ければ多いほど緩やかに増加することがわかる。
-
-    図\ref{fig:paging-offset-db-disk-out-app_1_1024-db_1_1024}に、イベント数に対するDBサーバーコンテナのメモリ使用量の関係を示す。
-
     \subfile{図:detail-db-disk-out/図:detail-db-disk-out}
 
-    図\ref{fig:paging-offset-db-disk-out-app_1_1024-db_1_1024}からレスポンスタイムはイベント数に応じて指数関数的に増加していることが10ごとにページングした場合から観測できる。また、ページあたりのイベント数が多ければ多いほど緩やかに増加することがわかる。
+    図から、DBサーバーのディスク書き込みはほとんどなく、読み込み量はイベント数に対して指数関数的に増加していることがわかる。また、ディスク読み込み量にページごとのイベント件数は影響していないことがわかる。
+
 
     \subsubsubsection{イベント数とネットワークI/Oの関係}\label{subsubsubsec:result-paging-offset-only-limit-net-io}
 
@@ -73,5 +68,7 @@
 
     \subfile{図:detail-app-net-in/図:detail-app-net-in}
     \subfile{図:detail-app-net-out/図:detail-app-net-out}
+
+    DBサーバーからアプリケーションサーバーへのネットワーク送信量はイベント数に対しておおよそ比例し、アプリケーションサーバーからDBサーバーへの送信量はイベント数が0から35万ほどの間で、指数関数的に増加した後イベント数に比例するようになっていることがわかる。この際ネットワーク送信量にページごとのイベント件数は影響していないことがわかる。
 
 \end{document}

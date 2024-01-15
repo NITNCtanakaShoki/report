@@ -3,7 +3,7 @@
 \begin{document}
     \subsubsection{アプリケーションサーバーのメモリ制限を変更させた場合の検証結果}\label{subsubsec:result-paging-offset-change-app-memory}
 
-    ここでは、Web APIサーバーのアプリケーションサーバーコンテナメモリ制限1024MBとし、DBサーバーのCPU制限を100\%、メモリ制限を1024MBとして、アプリケーションサーバーのCPU制限を200\%、300\%、400\%と変更させた場合の実験結果を示す。
+    Web APIサーバーのアプリケーションサーバーコンテナのCPU制限を400\%、DBサーバーのCPU制限を100\%、メモリ制限を1024MBとして、アプリケーションサーバーのメモリ制限を1024MB、2048MB、4096MB、8192MBと変更させた場合の実験結果を示す。
 
     \subsubsubsection{サーバー内処理時間}
 
@@ -11,17 +11,24 @@
 
     \subfile{図:app-server-time/図:app-server-time}
 
-    図\ref{fig:paging-offset-change-app-memory-limit-server-time-app_4_db_1_1024}より、仮想メモリを使用していないと推測されている75万ほどのイベント数ではほとんどCPU制限が100\%のときと変化がないが、仮想メモリを使い出したと推測される75万のイベント数以降は、サーバー内処理時間が増減していることがわかる。しかし、制限されるCPU量には関係が見られないため、ディスクの状態によって仮想メモリの速度がかわっているのではないかと推測される。
+    図\ref{fig:paging-offset-change-app-memory-limit-server-time-app_4_db_1_1024}より、メモリ制限とサーバー内処理時間には相関関係が見られなかった。
 
     \subsubsubsection{メモリ使用量}
 
-    図\ref{fig:paging-offset-change-app-memory-limit-app-memory-app_4_db_1_1024}に、CPU制限を変化させた際のサーバー内処理時間を示す。
+    図\ref{fig:paging-offset-change-app-memory-limit-app-memory-app_4_db_1_1024}に、メモリ制限を変化させた際のイベント数に対するアプリケーションコンテナの使用メモリ量を示す。
 
     \subfile{図:app-memory/図:app-memory}
 
+    図\ref{fig:paging-offset-change-app-memory-limit-app-memory-app_4_db_1_1024}は図\ref{fig:stream-change-app-memory-limit-app-memory-app_4_db_1_1024}と形状が酷似しているが、詳細な数値は異なる。しかしほとんど形状が変わらないため計測手法に問題があり、集計方法以外の要因でメモリ使用量の結果がこうなった可能性がある。
+
     \subsubsubsection{アプリケーションのディスク使用量}
 
+    また、メモリ制限を変化させた際のアプリケーションのディスク書き込み量を図\ref{fig:paging-offset-change-app-memory-limit-app-disk-in-app_1024-db_1_1024}に示す。
+
     \subfile{図:app-disk-in/図:app-disk-in}
+
+    こちらも図\ref{fig:stream-change-app-memory-limit-app-disk-in-app_4_db_1_1024}と酷似しており、計測手法に問題がある可能性がある。
+
 
 
 

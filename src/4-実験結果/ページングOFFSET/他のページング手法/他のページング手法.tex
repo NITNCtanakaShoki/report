@@ -1,75 +1,75 @@
 \documentclass[../../../../main]{subfiles}
 
 \begin{document}
-    \subsubsection{他のページング手法との比較}\label{subsubsec:result-paging-way-only-limit}
+    \subsubsection{他のページング手法との比較}\label{subsubsec:result-each-paging-only-limit}
 
-    ここでは、Web APIサーバーのアプリケーションサーバーコンテナをCPU制限100\%、メモリ制限1024MBとし、DBサーバーも同様の制限を設定した状態での実験結果を示す。
+    Web APIサーバーのアプリケーションサーバーコンテナをCPU制限100\%、メモリ制限1024MBとし、DBサーバーも同様の制限を設定した状態で、OFFSETを使用したページング手法、各ページの最後のイベントを使用したページング手法、各ページの最後のイベントを使用したページング手法の集計処理とDBアクセス処理を並行化したものを比較する。
 
-    \subsubsubsection{イベント数とサーバー内処理時間の関係}\label{subsubsubsec:result-paging-way-only-limit-server-time}
+    \subsubsubsection{イベント数とサーバー内処理時間の関係}\label{subsubsubsec:result-each-paging-only-limit-server-time}
 
-    図\ref{fig:paging-way-server-time-app_4_8192-db_4_8192}に、イベント数に対するサーバー内処理時間の関係を示す。OFFSETを使用したページング処理では、どの程度のまとまりごとにに処理を行うか設定できるが、ここではイベント数を10、100、1000、10000ごとに処理を行った場合の結果を示す。
+    図\ref{fig:each-paging-server-time-app_1_1024-db_1_1024}に、イベント数に対するサーバー内処理時間の関係を示す。
 
     \subfile{図:detail-server-time/図:detail-server-time}
 
-    図\ref{fig:paging-way-server-time-app_4_8192-db_4_8192}からサーバー内処理時間はイベント数に応じて指数関数的に増加していることが10ごとにページングした場合から観測できる。また、ページあたりのイベント数が多ければ多いほど緩やかに増加することがわかる。
+    図\ref{fig:each-paging-server-time-app_1_1024-db_1_1024}から、全体を通してほとんど差はないが、イベント数が増加するにつれて各ページの最後のイベントを使用したページング手法の方がサーバー内処理時間が比較的小さいことがわかる。またそれも並行化したほうがわずかに小さい。
 
-    \subsubsubsection{イベント数とCPU使用率の関係}\label{subsubsubsec:result-paging-way-only-limit-cpu}
+    \subsubsubsection{イベント数とCPU使用率の関係}\label{subsubsubsec:result-each-paging-only-limit-cpu}
 
-    図\ref{fig:paging-way-app-cpu-app_4_8192-db_4_8192}に、イベント数に対するアプリケーションサーバーコンテナのCPU使用率の関係を示す。
+    図\ref{fig:each-paging-app-cpu-app_1_1024-db_1_1024}に、イベント数に対するアプリケーションサーバーコンテナのCPU使用率の関係を示す。
 
     \subfile{図:detail-app-cpu/図:detail-app-cpu}
 
-    図\ref{fig:paging-way-app-cpu-app_4_8192-db_4_8192}からレスポンスタイムはイベント数に応じて指数関数的に増加していることが10ごとにページングした場合から観測できる。また、ページあたりのイベント数が多ければ多いほど緩やかに増加することがわかる。
+    図\ref{fig:each-paging-app-cpu-app_1_1024-db_1_1024}から各ページング手法でCPU使用率が顕著に異なることはなく、およそ70\%から90\%ほどのCPU使用率であることがわかる。
 
-    図\ref{fig:paging-way-db-cpu-app_4_8192-db_4_8192}に、イベント数に対するDBサーバーコンテナのCPU使用率の関係を示す。
+    図\ref{fig:each-paging-db-cpu-app_1_1024-db_1_1024}に、イベント数に対するDBサーバーコンテナのCPU使用率の関係を示す。
 
     \subfile{図:detail-db-cpu/図:detail-db-cpu}
 
-    図\ref{fig:paging-way-db-cpu-app_4_8192-db_4_8192}からレスポンスタイムはイベント数に応じて指数関数的に増加していることが10ごとにページングした場合から観測できる。また、ページあたりのイベント数が多ければ多いほど緩やかに増加することがわかる。
+    図\ref{fig:each-paging-db-cpu-app_1_1024-db_1_1024}から、各ページング手法でDBのCPU使用率に変化はないことがわかった。
 
-    \subsubsubsection{イベント数とメモリ使用量の関係}\label{subsubsubsec:result-paging-way-only-limit-mem}
+    \subsubsubsection{イベント数とメモリ使用量の関係}\label{subsubsubsec:result-each-paging-only-limit-mem}
 
-    図\ref{fig:paging-way-app-mem-app_4_8192-db_4_8192}に、イベント数に対するアプリケーションサーバーコンテナのメモリ使用量の関係を示す。
+    図\ref{fig:each-paging-app-mem-app_1_1024-db_1_1024}に、イベント数に対するアプリケーションサーバーコンテナのメモリ使用量の関係を示す。
 
     \subfile{図:detail-app-mem/図:detail-app-mem}
 
-    図\ref{fig:paging-way-app-mem-app_4_8192-db_4_8192}からレスポンスタイムはイベント数に応じて指数関数的に増加していることが10ごとにページングした場合から観測できる。また、ページあたりのイベント数が多ければ多いほど緩やかに増加することがわかる。
+    図\ref{fig:each-paging-app-mem-app_1_1024-db_1_1024}からアプリケーションコンテナのメモリ使用量は各ページング手法で変化がないことがわかる。
 
-    図\ref{fig:paging-way-db-mem-app_4_8192-db_4_8192}に、イベント数に対するDBサーバーコンテナのメモリ使用量の関係を示す。
+    図\ref{fig:each-paging-db-mem-app_1_1024-db_1_1024}に、イベント数に対するDBサーバーコンテナのメモリ使用量の関係を示す。
 
     \subfile{図:detail-db-mem/図:detail-db-mem}
 
-    図\ref{fig:paging-way-db-mem-app_4_8192-db_4_8192}からレスポンスタイムはイベント数に応じて指数関数的に増加していることが10ごとにページングした場合から観測できる。また、ページあたりのイベント数が多ければ多いほど緩やかに増加することがわかる。
+    図\ref{fig:each-paging-db-mem-app_1_1024-db_1_1024}より、DBも、各ページング手法でメモリ使用量に変化はないことがわかる。
 
-    \subsubsubsection{イベント数とディスクI/Oの関係}\label{subsubsubsec:result-paging-way-only-limit-disk-io}
+    \subsubsubsection{イベント数とディスク書き込みの関係}\label{subsubsubsec:result-each-paging-only-limit-disk-in}
 
-    図\ref{fig:paging-way-app-disk-in-app_4_8192-db_4_8192}に、イベント数に対するアプリケーションサーバーコンテナのディスク書き込み量の関係を示す。
+    図\ref{fig:each-paging-app-disk-in-app_1_1024-db_1_1024}に、イベント数に対するアプリケーションサーバーコンテナのディスク書き込み量の関係を示す。
 
     \subfile{図:detail-app-disk-in/図:detail-app-disk-in}
 
-    図\ref{fig:paging-way-app-disk-in-app_4_8192-db_4_8192}からレスポンスタイムはイベント数に応じて指数関数的に増加していることが10ごとにページングした場合から観測できる。また、ページあたりのイベント数が多ければ多いほど緩やかに増加することがわかる。
+    図\ref{fig:each-paging-app-disk-in-app_1_1024-db_1_1024}から、各ページング手法でディスク書き込み量に変化はなく、全て仮想メモリを使用していることがわかる。
 
-    図\ref{fig:paging-way-app-disk-out-app_4_8192-db_4_8192}に、イベント数に対するDBサーバーコンテナのメモリ使用量の関係を示す。
+    図\ref{fig:each-paging-app-disk-out-app_1_1024-db_1_1024}に、イベント数に対するDBサーバーコンテナのメモリ使用量の関係を示す。
 
     \subfile{図:detail-app-disk-out/図:detail-app-disk-out}
 
-    図\ref{fig:paging-way-app-disk-out-app_4_8192-db_4_8192}からレスポンスタイムはイベント数に応じて指数関数的に増加していることが10ごとにページングした場合から観測できる。また、ページあたりのイベント数が多ければ多いほど緩やかに増加することがわかる。
+    図\ref{fig:each-paging-app-disk-out-app_1_1024-db_1_1024}からレスポンスタイムはイベント数に応じて指数関数的に増加していることが10ごとにページングした場合から観測できる。また、ページあたりのイベント数が多ければ多いほど緩やかに増加することがわかる。
 
-    図\ref{fig:paging-way-db-disk-in-app_4_8192-db_4_8192}に、イベント数に対するアプリケーションサーバーコンテナのディスク書き込み量の関係を示す。
+    図\ref{fig:each-paging-db-disk-in-app_1_1024-db_1_1024}に、イベント数に対するアプリケーションサーバーコンテナのディスク書き込み量の関係を示す。
 
     \subfile{図:detail-db-disk-in/図:detail-db-disk-in}
 
-    図\ref{fig:paging-way-db-disk-in-app_4_8192-db_4_8192}からレスポンスタイムはイベント数に応じて指数関数的に増加していることが10ごとにページングした場合から観測できる。また、ページあたりのイベント数が多ければ多いほど緩やかに増加することがわかる。
+    図\ref{fig:each-paging-db-disk-in-app_1_1024-db_1_1024}からレスポンスタイムはイベント数に応じて指数関数的に増加していることが10ごとにページングした場合から観測できる。また、ページあたりのイベント数が多ければ多いほど緩やかに増加することがわかる。
 
-    図\ref{fig:paging-way-db-disk-out-app_4_8192-db_4_8192}に、イベント数に対するDBサーバーコンテナのメモリ使用量の関係を示す。
+    図\ref{fig:each-paging-db-disk-out-app_1_1024-db_1_1024}に、イベント数に対するDBサーバーコンテナのメモリ使用量の関係を示す。
 
     \subfile{図:detail-db-disk-out/図:detail-db-disk-out}
 
-    図\ref{fig:paging-way-db-disk-out-app_4_8192-db_4_8192}からレスポンスタイムはイベント数に応じて指数関数的に増加していることが10ごとにページングした場合から観測できる。また、ページあたりのイベント数が多ければ多いほど緩やかに増加することがわかる。
+    図\ref{fig:each-paging-db-disk-out-app_1_1024-db_1_1024}からレスポンスタイムはイベント数に応じて指数関数的に増加していることが10ごとにページングした場合から観測できる。また、ページあたりのイベント数が多ければ多いほど緩やかに増加することがわかる。
 
-    \subsubsubsection{イベント数とネットワークI/Oの関係}\label{subsubsubsec:result-paging-way-only-limit-net-io}
+    \subsubsubsection{イベント数とネットワークI/Oの関係}\label{subsubsubsec:result-each-paging-only-limit-net-io}
 
-    図\ref{fig:paging-way-app-net-in-app_4_8192-db_4_8192}に、イベント数に対するアプリケーションサーバーコンテナのネットワーク受信量の関係を、図\ref{fig:paging-way-app-net-out-app_4_8192-db_4_8192}に、イベント数に対するアプリケーションサーバーコンテナのネットワーク送信量の関係を示す。
+    図\ref{fig:each-paging-app-net-in-app_1_1024-db_1_1024}に、イベント数に対するアプリケーションサーバーコンテナのネットワーク受信量の関係を、図\ref{fig:each-paging-app-net-out-app_1_1024-db_1_1024}に、イベント数に対するアプリケーションサーバーコンテナのネットワーク送信量の関係を示す。
 
     \subfile{図:detail-app-net-in/図:detail-app-net-in}
     \subfile{図:detail-app-net-out/図:detail-app-net-out}
