@@ -7,6 +7,12 @@ RUN apt-get update && apt-get install -y \
     python3-pip \
   && rm -rf /var/lib/apt/lists/*
 
+# TeX Liveのパッケージを更新
+RUN tlmgr update --self --all
+
+# 必要なTeX Liveのパッケージをインストール
+RUN tlmgr install collection-langjapanese collection-langcjk collection-fontsrecommended
+
 # XeTeX をインストールする場合の例
 RUN apt-get update \
   && apt-get install -y \

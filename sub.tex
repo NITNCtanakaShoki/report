@@ -22,6 +22,9 @@
 \renewcommand{\labelitemiii}{$\bullet$}
 \renewcommand{\labelitemiv}{$\circ$}
 
+% Table
+\usepackage{tabularx}
+
 % PDF Plots
 \usepackage{pgfplots}
 \pgfplotsset{compat=newest}
@@ -95,7 +98,19 @@
 \title{イベントソーシングの適用条件の検証}
 \author{田中 陽一朗}
 
+\def\kintou#1#2{\leavevmode \hbox to #1 {%
+    \kanjiskip=0pt plus 1fill minus 1fill
+    \xkanjiskip=\kanjiskip #2}}
+\newcommand{\keisen}{%
+    \begin{picture}(150,6)
+        \linethickness{1pt}
+        \put(0,3){\line(1,0){150}}
+    \end{picture}
+}
+
 \begin{document}
+
+    \subfile{src/表紙/表紙}
 
 %    \subfile{src/1-前書き/1-前書き}
 
