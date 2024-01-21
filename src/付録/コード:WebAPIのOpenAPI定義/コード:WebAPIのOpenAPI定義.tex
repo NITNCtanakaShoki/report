@@ -22,7 +22,7 @@ paths:
           schema:
             type: integer
             format: int64
-          description: 生成するイベント数
+          description: 生成するイベント件数
         - name: username1
           in: path
           required: true
@@ -61,7 +61,7 @@ paths:
             application/json:
               schema:
                 type: integer
-                description: イベント数
+                description: イベント件数
         '500':
           description: サーバーエラー
           content:
@@ -86,7 +86,7 @@ paths:
             application/json:
               schema:
                 type: integer
-                description: イベント数
+                description: イベント件数
         '422':
           description: 検証エラー
           content:
@@ -140,7 +140,7 @@ paths:
           schema:
             type: integer
             format: int64
-          description: 1つのチャンクのイベント数
+          description: 1つのチャンクのイベント件数
         - name: username
           in: path
           required: true
@@ -177,7 +177,7 @@ paths:
           schema:
             type: integer
             format: int64
-          description: 1ページのイベント数
+          description: 1ページのイベント件数
         - name: username
           in: path
           required: true
@@ -214,7 +214,7 @@ paths:
           schema:
             type: integer
             format: int64
-          description: 1ページのイベント数
+          description: 1ページのイベント件数
         - name: username
           in: path
           required: true
@@ -251,7 +251,7 @@ paths:
           schema:
             type: integer
             format: int64
-          description: 1ページのイベント数
+          description: 1ページのイベント件数
         - name: username
           in: path
           required: true

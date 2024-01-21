@@ -3,55 +3,55 @@
 \begin{document}
     Web APIサーバーのアプリケーションサーバーコンテナをCPU制限100\%, メモリ制限1024MBとし, DBサーバーも同様の制限を設定した状態での実験結果を示す.
 
-    \subsubsection{イベント数とサーバー内処理時間の関係}\label{subsubsubsec:result-each-way-only-limit-server-time}
+    \subsubsection{イベント件数とサーバー内処理時間の関係}\label{subsubsubsec:result-each-way-only-limit-server-time}
 
-    図\ref{fig:each-way-server-time-app_1_1024-db_1_1024}に, イベント数に対するサーバー内処理時間の関係を示す. OFFSETを使用したページング処理では, どの程度のまとまりごとにに処理を行うか設定できるが, ここではイベント数を10, 100, 1000, 10000ごとに処理を行った場合の結果を示す.
+    図\ref{fig:each-way-server-time-app_1_1024-db_1_1024}に, イベント件数に対するサーバー内処理時間の関係を示す. OFFSETを使用したページング処理では, どの程度のまとまりごとにに処理を行うか設定できるが, ここではイベント件数を10, 100, 1000, 10000ごとに処理を行った場合の結果を示す.
 
     \subfile{図:detail-server-time/図:detail-server-time}
 
-    図\ref{fig:each-way-server-time-app_1_1024-db_1_1024}から, ストリーミング処理とチャンク処理方式はほとんど同じサーバー内時間となり, 75万のイベント数を超えてからメモリがボトルネックとなってサーバー内処理時間が急激に増加しているのに対して, ページング処理では初期ではストリーミング処理などの倍ほどのサーバー内処理時間がかかっているが, メモリのボトルネックによる急なサーバー内処理時間の増加がないため, 100万のイベント数の際にはストリーミング処理やチャンク処理よりも小さいサーバー内処理時間となっている.
+    図\ref{fig:each-way-server-time-app_1_1024-db_1_1024}から, ストリーミング処理とチャンク処理方式はほとんど同じサーバー内時間となり, 75万のイベント件数を超えてからメモリがボトルネックとなってサーバー内処理時間が急激に増加しているのに対して, ページング処理では初期ではストリーミング処理などの倍ほどのサーバー内処理時間がかかっているが, メモリのボトルネックによる急なサーバー内処理時間の増加がないため, 100万のイベント件数の際にはストリーミング処理やチャンク処理よりも小さいサーバー内処理時間となっている.
 
-    \subsubsection{イベント数とCPU使用率の関係}\label{subsubsubsec:result-each-way-only-limit-cpu}
+    \subsubsection{イベント件数とCPU使用率の関係}\label{subsubsubsec:result-each-way-only-limit-cpu}
 
-    図\ref{fig:each-way-app-cpu-app_1_1024-db_1_1024}に, イベント数に対するアプリケーションサーバーコンテナのCPU使用率の関係を示す.
+    図\ref{fig:each-way-app-cpu-app_1_1024-db_1_1024}に, イベント件数に対するアプリケーションサーバーコンテナのCPU使用率の関係を示す.
 
     \subfile{図:detail-app-cpu/図:detail-app-cpu}
 
     図\ref{fig:each-way-app-cpu-app_1_1024-db_1_1024}からアプリケーションサーバーコンテナのCPU使用率は, ページング処理の場合は100\%に張り付かず, それ以外の方法では100\%に張り付いていることがわかる.
 
-    図\ref{fig:each-way-db-cpu-app_1_1024-db_1_1024}に, イベント数に対するDBサーバーコンテナのCPU使用率の関係を示す.
+    図\ref{fig:each-way-db-cpu-app_1_1024-db_1_1024}に, イベント件数に対するDBサーバーコンテナのCPU使用率の関係を示す.
 
     \subfile{図:detail-db-cpu/図:detail-db-cpu}
 
     図\ref{fig:each-way-db-cpu-app_1_1024-db_1_1024}からDBのCPU使用率はどれもほとんど変化がないが, チャンク処理だけ比較的小さいことがわかる.
 
-    \subsubsection{イベント数とメモリ使用量の関係}\label{subsubsubsec:result-each-way-only-limit-mem}
+    \subsubsection{イベント件数とメモリ使用量の関係}\label{subsubsubsec:result-each-way-only-limit-mem}
 
-    図\ref{fig:each-way-app-mem-app_1_1024-db_1_1024}に, イベント数に対するアプリケーションサーバーコンテナのメモリ使用量の関係を示す.
+    図\ref{fig:each-way-app-mem-app_1_1024-db_1_1024}に, イベント件数に対するアプリケーションサーバーコンテナのメモリ使用量の関係を示す.
 
     \subfile{図:detail-app-mem/図:detail-app-mem}
 
-    図\ref{fig:each-way-app-mem-app_1_1024-db_1_1024}からアプリケーションサーバーコンテナのメモリ使用量は集計方法に関わらず同じ傾きでイベント数に比例していることがわかる. 計測が間違いでないのであれば, 集計方法以外にメモリを消費する処理が存在している可能性や, メモリリークを起こしている可能性がある.
+    図\ref{fig:each-way-app-mem-app_1_1024-db_1_1024}からアプリケーションサーバーコンテナのメモリ使用量は集計方法に関わらず同じ傾きでイベント件数に比例していることがわかる. 計測が間違いでないのであれば, 集計方法以外にメモリを消費する処理が存在している可能性や, メモリリークを起こしている可能性がある.
 
-    図\ref{fig:each-way-db-mem-app_1_1024-db_1_1024}に, イベント数に対するDBサーバーコンテナのメモリ使用量の関係を示す.
+    図\ref{fig:each-way-db-mem-app_1_1024-db_1_1024}に, イベント件数に対するDBサーバーコンテナのメモリ使用量の関係を示す.
 
     \subfile{図:detail-db-mem/図:detail-db-mem}
 
-    図\ref{fig:each-way-db-mem-app_1_1024-db_1_1024}からDBのメモリ使用量はどの集計方法もほとんど同じであり, イベント数に比例していることがわかる.
+    図\ref{fig:each-way-db-mem-app_1_1024-db_1_1024}からDBのメモリ使用量はどの集計方法もほとんど同じであり, イベント件数に比例していることがわかる.
 
-    \subsubsection{イベント数とディスクI/Oの関係}\label{subsubsubsec:result-each-way-only-limit-disk-io}
+    \subsubsection{イベント件数とディスクI/Oの関係}\label{subsubsubsec:result-each-way-only-limit-disk-io}
 
-    図\ref{fig:each-way-db-disk-in-app_1_1024-db_1_1024}に, イベント数に対するアプリケーションサーバーコンテナのディスク書き込み量の関係を示す.
+    図\ref{fig:each-way-db-disk-in-app_1_1024-db_1_1024}に, イベント件数に対するアプリケーションサーバーコンテナのディスク書き込み量の関係を示す.
 
     \subfile{図:detail-db-disk-in/図:detail-db-disk-in}
 
     図\ref{fig:each-way-db-disk-in-app_1_1024-db_1_1024}からどの手法も同じ書き込みの量で, 仮想メモリを用いるタイミングと量が同じになっていることがわかる.
 
-    \subsubsection{イベント数とネットワークI/Oの関係}\label{subsubsubsec:result-each-way-only-limit-net-io}
+    \subsubsection{イベント件数とネットワークI/Oの関係}\label{subsubsubsec:result-each-way-only-limit-net-io}
 
-    図\ref{fig:each-way-app-net-in-app_1_1024-db_1_1024}に, イベント数に対するアプリケーションサーバーコンテナのネットワーク受信量の関係を示す.
+    図\ref{fig:each-way-app-net-in-app_1_1024-db_1_1024}に, イベント件数に対するアプリケーションサーバーコンテナのネットワーク受信量の関係を示す.
 
     \subfile{図:detail-app-net-in/図:detail-app-net-in}
 
-    図から, 各手法でネットワーク受信量に変化はなく, おそらくイベント数に比例していることがわかる.
+    図から, 各手法でネットワーク受信量に変化はなく, おそらくイベント件数に比例していることがわかる.
 \end{document}
