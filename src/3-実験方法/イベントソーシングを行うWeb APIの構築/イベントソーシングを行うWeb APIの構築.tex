@@ -51,8 +51,5 @@
 
     このSQLでは、図\ref{fig:paging-offset-sql}と違い、OFFSETがなく、代わりにWHERE句を使用している。WHERE区で前ページの最後のイベントの日付とidよりも後のイベントに絞り込むことでOFFSETが不要になる。この方法では、OFFSETを使用する方法に比べてデータベースの処理速度が向上することが期待されるが、前ページの最後のイベントを記録しておく必要があり、コードの複雑性が増す。
 
-    また、Web APIサーバーはRESTful APIとして設計され、以下のOpen API定義に基づくエンドポイントを提供する。
-
-    \subfile{コード:WebAPIのOpenAPI定義/コード:WebAPIのOpenAPI定義}
 
 \end{document}

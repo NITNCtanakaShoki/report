@@ -1,8 +1,8 @@
 \documentclass[../../../main]{subfiles}
 
 \begin{document}
-    \subsection{ARC}\label{subsec:phraseology-arc}
+    \subsection{ARC（Automatic Reference Counting）}\label{subsec:phraseology-arc}
+    本研究で用いるSwift言語は、メモリの管理にARC（Automatic Reference Counting）という手法を採用している。この手法では、クラスのインスタンスが参照している箇所をカウントし、参照がなくなった時点でインスタンスを解放する。このため、ガベージコレクションと違って、インスタンスが解放されるタイミングは明確である。
 
-    ARCとは
-
+    また、structやenumは値型でありクラスではないためコンパイル時にメモリの管理が行われるが、本研究ではイベントのデータ構造をORMモデルのクラスとして扱うため、ARCの対象となる。\cite{ARC}
 \end{document}

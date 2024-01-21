@@ -22,6 +22,9 @@
 \renewcommand{\labelitemiii}{$\bullet$}
 \renewcommand{\labelitemiv}{$\circ$}
 
+% Table
+\usepackage{tabularx}
+
 % PDF Plots
 \usepackage{pgfplots}
 \pgfplotsset{compat=newest}
@@ -98,8 +101,14 @@
 \begin{document}
     \subfile{src/表紙/表紙}
 
+    \pagenumbering{roman}
+
     \tableofcontents
     \clearpage
+
+    \subfile{src/要約/要約}
+
+    \pagenumbering{arabic}
 
     \subfile{src/1-前書き/1-前書き}
 
@@ -111,15 +120,10 @@
 
     \subfile{src/5-考察/5-考察}
 
-    \section{あとがき}\label{sec:conclusion}
-    \clearpage
+    \pagestyle{empty}
 
-    \section{謝辞}\label{sec:acknowledgement}
+    \subfile{src/文献/文献}
 
-    謝辞を書きます。
-
-    \clearpage
-
-    \section{文献}\label{sec:reference}
+    \subfile{src/付録/付録}
 
 \end{document}

@@ -1,58 +1,50 @@
 \documentclass[../../../../main]{subfiles}
 
 \begin{document}
-    \subsubsection{アプリケーションサーバーのメモリ制限を変更させた場合の検証結果}\label{subsubsec:result-streaming-change-app-memory}
+    \subsubsection{アプリケーションサーバーのメモリ制限を変更した場合の検証結果}\label{subsubsec:result-streaming-change-app-memory}
 
-    Web APIサーバーのアプリケーションサーバーコンテナのCPU制限を400\%とし、DBサーバーコンテナのCPU制限を100\%、メモリ制限を1024MBとして、アプリケーションサーバーコンテナのメモリ制限を1024MB、2048MB、4096MB、8192MBと変更させた場合の実験結果を示す。
+    本セクションでは、Web APIサーバーのアプリケーションサーバーコンテナのCPU制限を400\%とし、DBサーバーコンテナのCPU制限を100\%、メモリ制限を1024MBと設定した上で、アプリケーションサ
+
+    ーバーコンテナのメモリ制限を1024MB、2048MB、4096MB、8192MBに変更した際の実験結果を示す。
 
     \subsubsubsection{サーバー内処理時間}
 
-    図\ref{fig:stream-change-app-memory-limit-server-time-app_4_db_1_1024}に、CPU制限を変化させた際のサーバー内処理時間を示す。
+    図\ref{fig:stream-change-app-memory-limit-server-time-app_4_db_1_1024}に、メモリ制限の変更によるサーバー内処理時間の変化を示す。
 
     \subfile{図:app-server-time/図:app-server-time}
 
-    図\ref{fig:stream-change-app-memory-limit-server-time-app_4_db_1_1024}より、メモリ制限が4096MBの場合と8192MBの場合ではどのイベント数でも比例し、1024MBと2048MBの場合では、途中から比例せずに急激に上昇している。2048MBの計測結果に関しては、ブレがあるため正しい考察は得られないが、4096MB以上のメモリ使用量の場合はサーバー内処理時間が変動するようなボトルネックが存在していないと考えられる。
+    図\ref{fig:stream-change-app-memory-limit-server-time-app_4_db_1_1024}の分析から、メモリ制限が4096MBと8192MBの場合、サーバー内処理時間はイベント数に応じて比例して増加しているが、1024MBと2048MBの場合は、イベント数が増加すると急激に処理時間が増加している。この結果は、メモリ制限がサーバー内処理時間に影響を与えていることを示している。
 
     \subsubsubsection{アプリケーションサーバーのCPU使用率}
 
-    図\ref{fig:stream-change-app-memory-limit-app-cpu-app_4_db_1_1024}に、メモリ制限を変更した際のアプリケーションサーバーコンテナのCPU使用率を、図\ref{fig:stream-change-app-memory-limit-db-cpu-app_4_db_1_1024}にはDBサーバーコンテナのCPU使用率を示す。
+    図\ref{fig:stream-change-app-memory-limit-app-cpu-app_4_db_1_1024}に、メモリ制限の変更によるアプリケーションサーバーコンテナのCPU使用率を示す。
 
     \subfile{図:app-CPU/図:app-CPU}
 
-
-    \subfile{図:db-CPU/図:db-CPU}
-
-    図\ref{fig:stream-change-app-memory-limit-app-cpu-app_4_db_1_1024}と図\ref{fig:stream-change-app-memory-limit-db-cpu-app_4_db_1_1024}、共にアプリケーションサーバーのメモリ制限を変更したことによる変化は見られなかった。
+    図\ref{fig:stream-change-app-memory-limit-app-cpu-app_4_db_1_1024}の結果から、メモリ制限の変更によるCPU使用率の顕著な変化は確認されなかった。
 
     \subsubsubsection{アプリケーションサーバーのメモリ使用量}
 
-    図\ref{fig:stream-change-app-memory-limit-app-memory-app_4_db_1_1024}に、メモリ制限を変更させた際のアプリケーションサーバーコンテナのメモリ使用量を、図\ref{fig:stream-change-app-memory-limit-db-memory-app_4_db_1_1024}にはDBサーバーコンテナのメモリ使用量を示す。
+    図\ref{fig:stream-change-app-memory-limit-app-memory-app_4_db_1_1024}に、メモリ制限の変更によるアプリケーションサーバーコンテナのメモリ使用量を示す。
 
     \subfile{図:app-memory/図:app-memory}
 
+    図\ref{fig:stream-change-app-memory-limit-app-memory-app_4_db_1_1024}からは、メモリ制限が4096MBと8192MBの場合、メモリ使用量はイベント数と比例して増加する一方で、1024MBと2048MBではメモリ使用量が急激に増加している。これは、低いメモリ制限下での仮想メモリの使用増加を示唆している。
+
+    図\ref{fig:stream-change-app-memory-limit-db-memory-app_4_db_1_1024}に、DBサーバーコンテナのメモリ使用量を示す。
+
     \subfile{図:db-memory/図:db-memory}
 
-    図\ref{fig:stream-change-app-memory-limit-app-memory-app_4_db_1_1024}では、メモリ制限が1024MBと4096MBの場合には比例するように上昇していき、2048MBと8192MBの場合はほぼ一定になっている。
-
-    図\ref{fig:stream-change-app-memory-limit-db-memory-app_4_db_1_1024}でも、メモリ制限が1024MBと4096MBの場合には比例するように上昇していき、2048MBと8192MBの場合はほぼ一定になっている。
-
-    これらのことから2048MBと8192MBの場合と1024MBと4096MBの場合では、計測結果に差があることがわかる。
+    DBサーバーコンテナのメモリ使用量も、メモリ制限の変更による顕著な変化は確認されなかった。
 
     \subsubsubsection{ディスクI/O}
 
-    図\ref{fig:stream-change-app-memory-limit-app-disk-in-app_4_db_1_1024}に、メモリ制限を変更させた際のアプリケーションサーバーコンテナのディスク書き込み量を、図\ref{fig:stream-change-app-memory-limit-app-disk-out-app_4_db_1_1024}にはディスク読み込み量を示す。
+    図\ref{fig:stream-change-app-memory-limit-app-disk-in-app_4_db_1_1024}に、メモリ制限を変更した際のアプリケーションサーバーコンテナのディスク書き込み量を、図\ref{fig:stream-change-app-memory-limit-app-disk-out-app_4_db_1_1024}にディスク読み込み量を示す。
 
     \subfile{図:app-disk-in/図:app-disk-in}
     \subfile{図:app-disk-out/図:app-disk-out}
 
-    計測結果から、 メモリ制限が1024MBと2048MBの際にはディスク読み書きが発生しているが、4096MBと8192MBの際にはディスク読み書きが全く発生していないことがわかった。しかし、2048MBの場合にはイベント数が少ない状態でもディスク読み書きが発生しており、イベント集計処理以外でのディスクの読み書きが発生している可能性がある。
-
-    図\ref{fig:stream-change-app-memory-limit-db-disk-in-app_4_db_1_1024}と図\ref{fig:stream-change-app-memory-limit-db-disk-out-app_4_db_1_1024}に、メモリ制限を変更させた際のDBサーバーコンテナのディスク書き込み量とディスク読み込み量を示す。
-
-    \subfile{図:db-disk-in/図:db-disk-in}
-    \subfile{図:db-disk-out/図:db-disk-out}
-
-    DBサーバーコンテナのディスク書き込みはほぼ発生しておらず、DBサーバーコンテナのディスク読み込みでもメモリ制限が2048MBの場合だけイベント数が少ない状態でもディスク読み込みが発生していることがわかる。しかしメモリ制限の変更による影響は見られなかった。
+    これらの図から、メモリ制限が低い場合、特に1024MBと2048MBの際にディスク読み書きが増加しているが、4096MBと8192MBではディスクI/Oの増加は見られない。これは、メモリ制限が低い場合、仮想メモリの使用が増加し、ディスクベースのページングが発生していることを示唆している。
 
     \subsubsubsection{ネットワークI/O}
 
