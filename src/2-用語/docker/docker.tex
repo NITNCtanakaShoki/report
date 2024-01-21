@@ -3,21 +3,21 @@
 \begin{document}
     \subsection{Docker}\label{subsec:phraseology-docker}
 
-    Dockerとは、アプリケーションの開発、移動、実行するためのプラットフォームである。開発環境や実行環境のポータビリティを向上させるために使われることが多いが、本研究では1つのマシン上でアプリケーションサーバーやDBサーバーをコンテナとして立ち上げ、それぞれでCPU使用率やメモリ使用量を計測するために使用する。\cite{Docker概要}
+    Dockerとは, アプリケーションの開発, 移動, 実行するためのプラットフォームである. 開発環境や実行環境のポータビリティを向上させるために使われることが多いが, 本研究では1つのマシン上でアプリケーションサーバーやDBサーバーをコンテナとして立ち上げ, それぞれでCPU使用率やメモリ使用量を計測するために使用する. \cite{Docker概要}
 
     \subsubsection{コンテナのCPU制限}\label{subsubsec:phraseology-docker-cpu-limit}
 
-    本研究では、dockerの機能を用いてコンテナに対してCPU制限を行う。その際には、\texttt{limits}と\texttt{reservations}の両方に設定する。\cite{Docker制限}
+    本研究では, dockerの機能を用いてコンテナに対してCPU制限を行う. その際には, \texttt{limits}と\texttt{reservations}の両方に設定する. \cite{Docker制限}
 
     \subsubsection{コンテナのメモリ制限}\label{subsubsec:phraseology-docker-memory-limit}
 
-    本研究では、dockerの機能を用いてコンテナに対してメモリ制限を行う。その際には、\texttt{limits}と\texttt{reservations}の両方に設定する。\cite{Docker制限}
+    本研究では, dockerの機能を用いてコンテナに対してメモリ制限を行う. その際には, \texttt{limits}と\texttt{reservations}の両方に設定する. \cite{Docker制限}
 
     \subsubsection{docker container statsコマンド}\label{subsubsec:phraseology-docker-container-stats}
 
-    \texttt{docker container stats}コマンドを用いて、実行中のコンテナからライブ・データ・ストリームを取得することができる。本実験では、このコマンドを用いてコンテナのCPU使用率やメモリ使用量を計測する。
+    \texttt{docker container stats}コマンドを用いて, 実行中のコンテナからライブ・データ・ストリームを取得することができる. 本実験では, このコマンドを用いてコンテナのCPU使用率やメモリ使用量を計測する.
 
-    このコマンドでは、0.5秒前後に1度、CPU使用率、メモリ使用量、ブロックI/O、ネットワークI/O、プロセス数などを取得できる。これを随時取得し計測用データベースに保存して、アクセス記録と結合することで実験データを得る。\cite{Docker Stats}
+    このコマンドでは, 0.5秒前後に1度, CPU使用率, メモリ使用量, ブロックI/O, ネットワークI/O, プロセス数などを取得できる. これを随時取得し計測用データベースに保存して, アクセス記録と結合することで実験データを得る. \cite{Docker Stats}
 
 
 \end{document}

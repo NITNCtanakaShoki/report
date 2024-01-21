@@ -3,50 +3,50 @@
 \begin{document}
     \subsubsection{アプリケーションサーバーのCPU制限を変更した場合の検証結果}\label{subsubsec:result-streaming-change-app-cpu}
 
-    本節では、Web APIサーバーのアプリケーションサーバーコンテナに設定したCPU制限を200\%、300\%、400\%に変更した際の影響を検証する。アプリケーションサーバーのメモリ制限は1024MBとし、DBサーバーのCPU制限は100\%、メモリ制限は1024MBに固定されている。
+    本節では, Web APIサーバーのアプリケーションサーバーコンテナに設定したCPU制限を200\%, 300\%, 400\%に変更した際の影響を検証する. アプリケーションサーバーのメモリ制限は1024MBとし, DBサーバーのCPU制限は100\%, メモリ制限は1024MBに固定されている.
 
     \subsubsubsection{サーバー内処理時間}
 
-    図\ref{fig:stream-change-app-cpu-limit-server-time-app_1024-db_1_1024}に、CPU制限の変更によるサーバー内処理時間の変化を示す。
+    図\ref{fig:stream-change-app-cpu-limit-server-time-app_1024-db_1_1024}に, CPU制限の変更によるサーバー内処理時間の変化を示す.
 
     \subfile{図:app-server-time/図:app-server-time}
 
-    図\ref{fig:stream-change-app-cpu-limit-server-time-app_1024-db_1_1024}の分析から、仮想メモリの使用が始まると推測される75万イベント数以降で、サーバー内処理時間には明確な増減が見られるが、CPU制限の割合による直接的な影響は確認できない。これは、ディスクの状態や仮想メモリの速度に依存する可能性がある。
+    図\ref{fig:stream-change-app-cpu-limit-server-time-app_1024-db_1_1024}の分析から, 仮想メモリの使用が始まると推測される75万イベント数以降で, サーバー内処理時間には明確な増減が見られるが, CPU制限の割合による直接的な影響は確認できない. これは, ディスクの状態や仮想メモリの速度に依存する可能性がある.
 
     \subsubsubsection{アプリケーションサーバーのCPU使用率}
 
-    図\ref{fig:stream-change-app-cpu-limit-app-cpu-app_1024-db_1_1024}に、CPU制限変更に伴うアプリケーションサーバーコンテナのCPU使用率を示す。
+    図\ref{fig:stream-change-app-cpu-limit-app-cpu-app_1024-db_1_1024}に, CPU制限変更に伴うアプリケーションサーバーコンテナのCPU使用率を示す.
 
     \subfile{図:app-CPU/図:app-CPU}
 
-    図\ref{fig:stream-change-app-cpu-limit-app-cpu-app_1024-db_1_1024}によると、CPU制限の変更によるアプリケーションサーバーのCPU使用率の変化は顕著ではない。
+    図\ref{fig:stream-change-app-cpu-limit-app-cpu-app_1024-db_1_1024}によると, CPU制限の変更によるアプリケーションサーバーのCPU使用率の変化は顕著ではない.
 
     \subsubsubsection{アプリケーションサーバーのメモリ使用量}
 
-    図\ref{fig:stream-change-app-cpu-limit-app-memory-app_1024-db_1_1024}に、CPU制限を変更した際のアプリケーションサーバーコンテナのメモリ使用量を示す。
+    図\ref{fig:stream-change-app-cpu-limit-app-memory-app_1024-db_1_1024}に, CPU制限を変更した際のアプリケーションサーバーコンテナのメモリ使用量を示す.
 
     \subfile{図:app-memory/図:app-memory}
 
-    図\ref{fig:stream-change-app-cpu-limit-app-memory-app_1024-db_1_1024}から、CPU制限の変更によるアプリケーションサーバーのメモリ使用量に大きな変化は見られない。CPU制限が100\%の場合にわずかなばらつきが見られるが、他のCPU制限値ではメモリ使用量に顕著な変動はない。
+    図\ref{fig:stream-change-app-cpu-limit-app-memory-app_1024-db_1_1024}から, CPU制限の変更によるアプリケーションサーバーのメモリ使用量に大きな変化は見られない. CPU制限が100\%の場合にわずかなばらつきが見られるが, 他のCPU制限値ではメモリ使用量に顕著な変動はない.
 
     \subsubsubsection{ディスクI/O}
 
-    図\ref{fig:stream-change-app-cpu-limit-app-disk-in-app_1024-db_1_1024}に、CPU制限変更に伴うアプリケーションサーバーコンテナのディスク書き込み量、図\ref{fig:stream-change-app-cpu-limit-app-disk-out-app_1024-db_1_1024}にディスク読み込み量を示す。
+    図\ref{fig:stream-change-app-cpu-limit-app-disk-in-app_1024-db_1_1024}に, CPU制限変更に伴うアプリケーションサーバーコンテナのディスク書き込み量, 図\ref{fig:stream-change-app-cpu-limit-app-disk-out-app_1024-db_1_1024}にディスク読み込み量を示す.
 
     \subfile{図:app-disk-in/図:app-disk-in}
     \subfile{図:app-disk-out/図:app-disk-out}
 
-    これらの図から、CPU制限の変更がアプリケーションサーバーのディスクI/Oに顕著な影響を与えていないことがわかる。ディスクの読み書き量に関しては、CPU制限の値にかかわらず、一貫したパターンが観察される。
+    これらの図から, CPU制限の変更がアプリケーションサーバーのディスクI/Oに顕著な影響を与えていないことがわかる. ディスクの読み書き量に関しては, CPU制限の値にかかわらず, 一貫したパターンが観察される.
 
     \subsubsubsection{ネットワークI/O}
 
-    図\ref{fig:stream-change-app-cpu-limit-app-net-in-app_1024-db_1_1024}に、CPU制限変更に伴うアプリケーションサーバーコンテナのネットワーク受信量、図\ref{fig:stream-change-app-cpu-limit-app-net-out-app_1024-db_1_1024}にネットワーク送信量を示す。
+    図\ref{fig:stream-change-app-cpu-limit-app-net-in-app_1024-db_1_1024}に, CPU制限変更に伴うアプリケーションサーバーコンテナのネットワーク受信量, 図\ref{fig:stream-change-app-cpu-limit-app-net-out-app_1024-db_1_1024}にネットワーク送信量を示す.
 
     \subfile{図:app-net-in/図:app-net-in}
     \subfile{図:app-net-out/図:app-net-out}
 
-    図\ref{fig:stream-change-app-cpu-limit-app-net-in-app_1024-db_1_1024}と図\ref{fig:stream-change-app-cpu-limit-app-net-out-app_1024-db_1_1024}によると、CPU制限の変更がアプリケーションサーバーのネットワークI/Oに顕著な影響を及ぼすことはない。CPU制限が100\%の場合に計測結果にいくらかのばらつきがあるものの、全体的にはネットワークの読み書き量には大きな変化は見られない。
+    図\ref{fig:stream-change-app-cpu-limit-app-net-in-app_1024-db_1_1024}と図\ref{fig:stream-change-app-cpu-limit-app-net-out-app_1024-db_1_1024}によると, CPU制限の変更がアプリケーションサーバーのネットワークI/Oに顕著な影響を及ぼすことはない. CPU制限が100\%の場合に計測結果にいくらかのばらつきがあるものの, 全体的にはネットワークの読み書き量には大きな変化は見られない.
 
-    以上の結果から、アプリケーションサーバーのCPU制限を変更することによる直接的な影響は限定的であり、サーバーの処理能力に比例してシステムのパフォーマンスが向上するわけではないことが示されている。
+    以上の結果から, アプリケーションサーバーのCPU制限を変更することによる直接的な影響は限定的であり, サーバーの処理能力に比例してシステムのパフォーマンスが向上するわけではないことが示されている.
 
 \end{document}

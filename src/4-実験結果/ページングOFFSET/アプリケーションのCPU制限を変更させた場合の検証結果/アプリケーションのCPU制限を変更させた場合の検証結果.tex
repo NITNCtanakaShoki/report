@@ -3,22 +3,22 @@
 \begin{document}
     \subsubsection{アプリケーションサーバーのCPU制限を変更した場合の検証結果}\label{subsubsec:result-paging-offset-change-app-cpu}
 
-    本セクションでは、Web APIサーバーのアプリケーションサーバーコンテナのメモリ制限を1024MBとし、DBサーバーのCPU制限を100\%、メモリ制限を1024MBに固定した上で、アプリケーションサーバーのCPU制限を200\%、300\%、400\%に変更した際の実験結果を報告する。
+    本セクションでは, Web APIサーバーのアプリケーションサーバーコンテナのメモリ制限を1024MBとし, DBサーバーのCPU制限を100\%, メモリ制限を1024MBに固定した上で, アプリケーションサーバーのCPU制限を200\%, 300\%, 400\%に変更した際の実験結果を報告する.
 
     \subsubsubsection{サーバー内処理時間}
 
-    図\ref{fig:paging-offset-change-app-cpu-limit-server-time-app_1024-db_1_1024}では、CPU制限を変更した際のサーバー内処理時間を示している。
+    図\ref{fig:paging-offset-change-app-cpu-limit-server-time-app_1024-db_1_1024}では, CPU制限を変更した際のサーバー内処理時間を示している.
 
     \subfile{図:app-server-time/図:app-server-time}
 
-    結果として、アプリケーションコンテナのCPU制限の変更がサーバー内処理時間に顕著な影響を与えることは確認されなかった。ただし、イベント数が7万から8万の範囲においては、他の範囲と比べて処理時間がわずかに増加する傾向が見られた。
+    結果として, アプリケーションコンテナのCPU制限の変更がサーバー内処理時間に顕著な影響を与えることは確認されなかった. ただし, イベント数が7万から8万の範囲においては, 他の範囲と比べて処理時間がわずかに増加する傾向が見られた.
 
     \subsubsubsection{CPU使用率}
 
-    図\ref{fig:paging-offset-change-app-cpu-limit-app-cpu-app_1024-db_1_1024}にて、CPU制限の変更に伴うアプリケーションサーバーコンテナのCPU使用率を示す。
+    図\ref{fig:paging-offset-change-app-cpu-limit-app-cpu-app_1024-db_1_1024}にて, CPU制限の変更に伴うアプリケーションサーバーコンテナのCPU使用率を示す.
 
     \subfile{図:app-CPU/図:app-CPU}
 
-    アプリケーションコンテナのCPU使用率については、使用可能なCPUの量を増加させても、その影響は見られなかった。その他の計測項目に関しても、CPU制限の変更が影響を及ぼさないことが確認されたため、その結果はここでは省略する。
+    アプリケーションコンテナのCPU使用率については, 使用可能なCPUの量を増加させても, その影響は見られなかった. その他の計測項目に関しても, CPU制限の変更が影響を及ぼさないことが確認されたため, その結果はここでは省略する.
 
 \end{document}

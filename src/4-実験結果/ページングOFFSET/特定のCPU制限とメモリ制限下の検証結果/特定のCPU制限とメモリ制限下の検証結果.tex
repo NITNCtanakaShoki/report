@@ -3,69 +3,69 @@
 \begin{document}
     \subsubsection{特定のCPU制限とメモリ制限下の検証結果}\label{subsubsec:result-paging-offset-only-limit}
 
-    本セクションでは、Web APIサーバーのアプリケーションサーバーコンテナにCPU制限100\%、メモリ制限1024MBを設定し、DBサーバーにも同様の制限を適用した状態での実験結果を報告する。
+    本セクションでは, Web APIサーバーのアプリケーションサーバーコンテナにCPU制限100\%, メモリ制限1024MBを設定し, DBサーバーにも同様の制限を適用した状態での実験結果を報告する.
 
     \subsubsubsection{イベント数とサーバー内処理時間の関係}\label{subsubsubsec:result-paging-offset-only-limit-server-time}
 
-    図\ref{fig:paging-offset-server-time-app_1_1024-db_1_1024}に示すように、イベント数とサーバー内処理時間の関係を調査した。ページング処理においては、ページあたりのイベント数を10、100、1000、10000件と変化させ、その影響を検証した。
+    図\ref{fig:paging-offset-server-time-app_1_1024-db_1_1024}に示すように, イベント数とサーバー内処理時間の関係を調査した. ページング処理においては, ページあたりのイベント数を10, 100, 1000, 10000件と変化させ, その影響を検証した.
 
     \subfile{図:detail-server-time/図:detail-server-time}
 
-    図\ref{fig:paging-offset-server-time-app_1_1024-db_1_1024}から明らかなように、サーバー内処理時間はイベント数に対して指数関数的に増加することが観察された。特に、ページあたりのイベント数が増加すると、処理時間の増加率は緩やかになる傾向がある。
+    図\ref{fig:paging-offset-server-time-app_1_1024-db_1_1024}から明らかなように, サーバー内処理時間はイベント数に対して指数関数的に増加することが観察された. 特に, ページあたりのイベント数が増加すると, 処理時間の増加率は緩やかになる傾向がある.
 
     \subsubsubsection{イベント数とCPU使用率の関係}\label{subsubsubsec:result-paging-offset-only-limit-cpu}
 
-    図\ref{fig:paging-offset-app-cpu-app_1_1024-db_1_1024}に、アプリケーションサーバーコンテナのCPU使用率を示す。ストリーミング処理やチャンク処理ではCPU使用率が100\%近くに達していたが、ページング処理ではこの傾向が見られなかった。
+    図\ref{fig:paging-offset-app-cpu-app_1_1024-db_1_1024}に, アプリケーションサーバーコンテナのCPU使用率を示す. ストリーミング処理やチャンク処理ではCPU使用率が100\%近くに達していたが, ページング処理ではこの傾向が見られなかった.
 
     \subfile{図:detail-app-cpu/図:detail-app-cpu}
 
-    この結果から、ページング処理ではCPUリソースがフルに活用されていない可能性が示唆される。これは、システム内の他のボトルネックが原因である可能性が考えられる。
+    この結果から, ページング処理ではCPUリソースがフルに活用されていない可能性が示唆される. これは, システム内の他のボトルネックが原因である可能性が考えられる.
 
-    図\ref{fig:paging-offset-db-cpu-app_1_1024-db_1_1024}に、DBサーバーコンテナのCPU使用率を示す。
+    図\ref{fig:paging-offset-db-cpu-app_1_1024-db_1_1024}に, DBサーバーコンテナのCPU使用率を示す.
 
     \subfile{図:detail-db-cpu/図:detail-db-cpu}
 
-    DBサーバーコンテナでは、ストリーミング処理とは異なり、CPU使用率が頻繁に100\%に達することが観察された。これは、DBサーバーのリソースが適切に活用されている
+    DBサーバーコンテナでは, ストリーミング処理とは異なり, CPU使用率が頻繁に100\%に達することが観察された. これは, DBサーバーのリソースが適切に活用されている
 
-    ことを示している。
+    ことを示している.
 
     \subsubsubsection{イベント数とメモリ使用量の関係}\label{subsubsubsec:result-paging-offset-only-limit-mem}
 
-    図\ref{fig:paging-offset-app-mem-app_1_1024-db_1_1024}に、アプリケーションサーバーコンテナのメモリ使用量のデータを示す。結果として、ページング処理にもかかわらず、メモリ使用量はイベント数に比例して増加する傾向が見られた。
+    図\ref{fig:paging-offset-app-mem-app_1_1024-db_1_1024}に, アプリケーションサーバーコンテナのメモリ使用量のデータを示す. 結果として, ページング処理にもかかわらず, メモリ使用量はイベント数に比例して増加する傾向が見られた.
 
     \subfile{図:detail-app-mem/図:detail-app-mem}
 
-    この観察から、ページング処理以外にもメモリを消費する要因が存在するか、メモリリークが発生している可能性が考えられる。
+    この観察から, ページング処理以外にもメモリを消費する要因が存在するか, メモリリークが発生している可能性が考えられる.
 
-    図\ref{fig:paging-offset-db-mem-app_1_1024-db_1_1024}に、DBサーバーコンテナのメモリ使用量のデータを示す。
+    図\ref{fig:paging-offset-db-mem-app_1_1024-db_1_1024}に, DBサーバーコンテナのメモリ使用量のデータを示す.
 
     \subfile{図:detail-db-mem/図:detail-db-mem}
 
-    DBサーバーコンテナのメモリ使用量は、イベント数にほぼ比例して増加することが確認された。
+    DBサーバーコンテナのメモリ使用量は, イベント数にほぼ比例して増加することが確認された.
 
     \subsubsubsection{イベント数とディスクI/Oの関係}\label{subsubsubsec:result-paging-offset-only-limit-disk-io}
 
-    図\ref{fig:paging-offset-app-disk-in-app_1_1024-db_1_1024}と図\ref{fig:paging-offset-app-disk-out-app_1_1024-db_1_1024}に、アプリケーションサーバーコンテナのディスクI/O（書き込み量と読み込み量）に関するデータを示す。
+    図\ref{fig:paging-offset-app-disk-in-app_1_1024-db_1_1024}と図\ref{fig:paging-offset-app-disk-out-app_1_1024-db_1_1024}に, アプリケーションサーバーコンテナのディスクI/O（書き込み量と読み込み量）に関するデータを示す.
 
     \subfile{図:detail-app-disk-in/図:detail-app-disk-in}
     \subfile{図:detail-app-disk-out/図:detail-app-disk-out}
 
-    これらの図から、ディスクI/Oはイベント数が約75万件を超えたあたりから顕著になり、仮想メモリの使用が推測される。
+    これらの図から, ディスクI/Oはイベント数が約75万件を超えたあたりから顕著になり, 仮想メモリの使用が推測される.
 
-    図\ref{fig:paging-offset-db-disk-in-app_1_1024-db_1_1024}と図\ref{fig:paging-offset-db-disk-out-app_1_1024-db_1_1024}に、DBサーバーのディスクI/Oに関するデータを示す。
+    図\ref{fig:paging-offset-db-disk-in-app_1_1024-db_1_1024}と図\ref{fig:paging-offset-db-disk-out-app_1_1024-db_1_1024}に, DBサーバーのディスクI/Oに関するデータを示す.
 
     \subfile{図:detail-db-disk-in/図:detail-db-disk-in}
     \subfile{図:detail-db-disk-out/図:detail-db-disk-out}
 
-    DBサーバーのディスクI/Oデータによると、ディスクへの書き込みはほとんど発生せず、読み込み量がイベント数に対して指数関数的に増加する傾向が見られた。また、ページごとのイベント数がディスク読み込み量に大きな影響を与えていないことが分かる。
+    DBサーバーのディスクI/Oデータによると, ディスクへの書き込みはほとんど発生せず, 読み込み量がイベント数に対して指数関数的に増加する傾向が見られた. また, ページごとのイベント数がディスク読み込み量に大きな影響を与えていないことが分かる.
 
     \subsubsubsection{イベント数とネットワークI/Oの関係}\label{subsubsubsec:result-paging-offset-only-limit-net-io}
 
-    図\ref{fig:paging-offset-app-net-in-app_1_1024-db_1_1024}と図\ref{fig:paging-offset-app-net-out-app_1_1024-db_1_1024}に、アプリケーションサーバーコンテナのネットワークI/O（受信量と送信量）に関するデータを示す。
+    図\ref{fig:paging-offset-app-net-in-app_1_1024-db_1_1024}と図\ref{fig:paging-offset-app-net-out-app_1_1024-db_1_1024}に, アプリケーションサーバーコンテナのネットワークI/O（受信量と送信量）に関するデータを示す.
 
     \subfile{図:detail-app-net-in/図:detail-app-net-in}
     \subfile{図:detail-app-net-out/図:detail-app-net-out}
 
-    これらのデータから、DBサーバーからアプリケーションサーバーへのネットワーク送信量はイベント数にほぼ比例し、アプリケーションサーバーからDBサーバーへの送信量はイベント数が0から約35万件の間で指数関数的に増加し、その後はイベント数に比例する傾向に変化することが観察された。また、ページあたりのイベント件数はネットワーク送信量に影響を与えていないことが確認された。
+    これらのデータから, DBサーバーからアプリケーションサーバーへのネットワーク送信量はイベント数にほぼ比例し, アプリケーションサーバーからDBサーバーへの送信量はイベント数が0から約35万件の間で指数関数的に増加し, その後はイベント数に比例する傾向に変化することが観察された. また, ページあたりのイベント件数はネットワーク送信量に影響を与えていないことが確認された.
 
 \end{document}

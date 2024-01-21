@@ -3,56 +3,56 @@
 \begin{document}
     \subsubsection{アプリケーションサーバーのメモリ制限を変更した場合の検証結果}\label{subsubsec:result-streaming-change-app-memory}
 
-    本セクションでは、Web APIサーバーのアプリケーションサーバーコンテナのCPU制限を400\%とし、DBサーバーコンテナのCPU制限を100\%、メモリ制限を1024MBと設定した上で、アプリケーションサ
+    本セクションでは, Web APIサーバーのアプリケーションサーバーコンテナのCPU制限を400\%とし, DBサーバーコンテナのCPU制限を100\%, メモリ制限を1024MBと設定した上で, アプリケーションサ
 
-    ーバーコンテナのメモリ制限を1024MB、2048MB、4096MB、8192MBに変更した際の実験結果を示す。
+    ーバーコンテナのメモリ制限を1024MB, 2048MB, 4096MB, 8192MBに変更した際の実験結果を示す.
 
     \subsubsubsection{サーバー内処理時間}
 
-    図\ref{fig:stream-change-app-memory-limit-server-time-app_4_db_1_1024}に、メモリ制限の変更によるサーバー内処理時間の変化を示す。
+    図\ref{fig:stream-change-app-memory-limit-server-time-app_4_db_1_1024}に, メモリ制限の変更によるサーバー内処理時間の変化を示す.
 
     \subfile{図:app-server-time/図:app-server-time}
 
-    図\ref{fig:stream-change-app-memory-limit-server-time-app_4_db_1_1024}の分析から、メモリ制限が4096MBと8192MBの場合、サーバー内処理時間はイベント数に応じて比例して増加しているが、1024MBと2048MBの場合は、イベント数が増加すると急激に処理時間が増加している。この結果は、メモリ制限がサーバー内処理時間に影響を与えていることを示している。
+    図\ref{fig:stream-change-app-memory-limit-server-time-app_4_db_1_1024}の分析から, メモリ制限が4096MBと8192MBの場合, サーバー内処理時間はイベント数に応じて比例して増加しているが, 1024MBと2048MBの場合は, イベント数が増加すると急激に処理時間が増加している. この結果は, メモリ制限がサーバー内処理時間に影響を与えていることを示している.
 
     \subsubsubsection{アプリケーションサーバーのCPU使用率}
 
-    図\ref{fig:stream-change-app-memory-limit-app-cpu-app_4_db_1_1024}に、メモリ制限の変更によるアプリケーションサーバーコンテナのCPU使用率を示す。
+    図\ref{fig:stream-change-app-memory-limit-app-cpu-app_4_db_1_1024}に, メモリ制限の変更によるアプリケーションサーバーコンテナのCPU使用率を示す.
 
     \subfile{図:app-CPU/図:app-CPU}
 
-    図\ref{fig:stream-change-app-memory-limit-app-cpu-app_4_db_1_1024}の結果から、メモリ制限の変更によるCPU使用率の顕著な変化は確認されなかった。
+    図\ref{fig:stream-change-app-memory-limit-app-cpu-app_4_db_1_1024}の結果から, メモリ制限の変更によるCPU使用率の顕著な変化は確認されなかった.
 
     \subsubsubsection{アプリケーションサーバーのメモリ使用量}
 
-    図\ref{fig:stream-change-app-memory-limit-app-memory-app_4_db_1_1024}に、メモリ制限の変更によるアプリケーションサーバーコンテナのメモリ使用量を示す。
+    図\ref{fig:stream-change-app-memory-limit-app-memory-app_4_db_1_1024}に, メモリ制限の変更によるアプリケーションサーバーコンテナのメモリ使用量を示す.
 
     \subfile{図:app-memory/図:app-memory}
 
-    図\ref{fig:stream-change-app-memory-limit-app-memory-app_4_db_1_1024}からは、メモリ制限が4096MBと8192MBの場合、メモリ使用量はイベント数と比例して増加する一方で、1024MBと2048MBではメモリ使用量が急激に増加している。これは、低いメモリ制限下での仮想メモリの使用増加を示唆している。
+    図\ref{fig:stream-change-app-memory-limit-app-memory-app_4_db_1_1024}からは, メモリ制限が4096MBと8192MBの場合, メモリ使用量はイベント数と比例して増加する一方で, 1024MBと2048MBではメモリ使用量が急激に増加している. これは, 低いメモリ制限下での仮想メモリの使用増加を示唆している.
 
-    図\ref{fig:stream-change-app-memory-limit-db-memory-app_4_db_1_1024}に、DBサーバーコンテナのメモリ使用量を示す。
+    図\ref{fig:stream-change-app-memory-limit-db-memory-app_4_db_1_1024}に, DBサーバーコンテナのメモリ使用量を示す.
 
     \subfile{図:db-memory/図:db-memory}
 
-    DBサーバーコンテナのメモリ使用量も、メモリ制限の変更による顕著な変化は確認されなかった。
+    DBサーバーコンテナのメモリ使用量も, メモリ制限の変更による顕著な変化は確認されなかった.
 
     \subsubsubsection{ディスクI/O}
 
-    図\ref{fig:stream-change-app-memory-limit-app-disk-in-app_4_db_1_1024}に、メモリ制限を変更した際のアプリケーションサーバーコンテナのディスク書き込み量を、図\ref{fig:stream-change-app-memory-limit-app-disk-out-app_4_db_1_1024}にディスク読み込み量を示す。
+    図\ref{fig:stream-change-app-memory-limit-app-disk-in-app_4_db_1_1024}に, メモリ制限を変更した際のアプリケーションサーバーコンテナのディスク書き込み量を, 図\ref{fig:stream-change-app-memory-limit-app-disk-out-app_4_db_1_1024}にディスク読み込み量を示す.
 
     \subfile{図:app-disk-in/図:app-disk-in}
     \subfile{図:app-disk-out/図:app-disk-out}
 
-    これらの図から、メモリ制限が低い場合、特に1024MBと2048MBの際にディスク読み書きが増加しているが、4096MBと8192MBではディスクI/Oの増加は見られない。これは、メモリ制限が低い場合、仮想メモリの使用が増加し、ディスクベースのページングが発生していることを示唆している。
+    これらの図から, メモリ制限が低い場合, 特に1024MBと2048MBの際にディスク読み書きが増加しているが, 4096MBと8192MBではディスクI/Oの増加は見られない. これは, メモリ制限が低い場合, 仮想メモリの使用が増加し, ディスクベースのページングが発生していることを示唆している.
 
     \subsubsubsection{ネットワークI/O}
 
-    図\ref{fig:stream-change-app-memory-limit-app-net-in-app_4_db_1_1024}に、メモリ制限を変更させた際のアプリケーションサーバーコンテナのネットワーク受信量を、図\ref{fig:stream-change-app-memory-limit-app-net-out-app_4_db_1_1024}にはネットワーク送信量を示す。
+    図\ref{fig:stream-change-app-memory-limit-app-net-in-app_4_db_1_1024}に, メモリ制限を変更させた際のアプリケーションサーバーコンテナのネットワーク受信量を, 図\ref{fig:stream-change-app-memory-limit-app-net-out-app_4_db_1_1024}にはネットワーク送信量を示す.
 
     \subfile{図:app-net-in/図:app-net-in}
     \subfile{図:app-net-out/図:app-net-out}
 
-    ネットワーク使用量もメモリ制限の変更による影響は見られなかった。
+    ネットワーク使用量もメモリ制限の変更による影響は見られなかった.
 
 \end{document}

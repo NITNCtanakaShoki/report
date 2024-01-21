@@ -3,50 +3,50 @@
 \begin{document}
     \subsubsection{他のページング手法との比較}\label{subsubsec:result-each-paging-only-limit}
 
-    本セクションでは、Web APIサーバーのアプリケーションサーバーコンテナのCPU制限を100\%、メモリ制限を1024MBに設定し、DBサーバーにも同様の制限を適用した状態で、OFFSETを使用したページング手法、各ページの最後のイベントを使用したページング手法、およびその並行処理版を比較する。
+    本セクションでは, Web APIサーバーのアプリケーションサーバーコンテナのCPU制限を100\%, メモリ制限を1024MBに設定し, DBサーバーにも同様の制限を適用した状態で, OFFSETを使用したページング手法, 各ページの最後のイベントを使用したページング手法, およびその並行処理版を比較する.
 
     \subsubsubsection{イベント数とサーバー内処理時間の関係}\label{subsubsubsec:result-each-paging-only-limit-server-time}
 
-    図\ref{fig:each-paging-server-time-app_1_1024-db_1_1024}では、イベント数に対するサーバー内処理時間の比較を示す。
+    図\ref{fig:each-paging-server-time-app_1_1024-db_1_1024}では, イベント数に対するサーバー内処理時間の比較を示す.
 
     \subfile{図:detail-server-time/図:detail-server-time}
 
-    図\ref{fig:each-paging-server-time-app_1_1024-db_1_1024}の分析から、イベント数の増加に伴い、各ページの最後のイベントを使用したページング手法が他の手法に比べてサーバー内処理時間が若干短いことが観察された。さらに、この手法の並行処理版はさらに処理時間を短縮する効果があることがわかる。
+    図\ref{fig:each-paging-server-time-app_1_1024-db_1_1024}の分析から, イベント数の増加に伴い, 各ページの最後のイベントを使用したページング手法が他の手法に比べてサーバー内処理時間が若干短いことが観察された. さらに, この手法の並行処理版はさらに処理時間を短縮する効果があることがわかる.
 
     \subsubsubsection{イベント数とCPU使用率の関係}\label{subsubsubsec:result-each-paging-only-limit-cpu}
 
-    図\ref{fig:each-paging-app-cpu-app_1_1024-db_1_1024}では、イベント数に対するアプリケーションサーバーコンテナのCPU使用率を比較する。
+    図\ref{fig:each-paging-app-cpu-app_1_1024-db_1_1024}では, イベント数に対するアプリケーションサーバーコンテナのCPU使用率を比較する.
 
     \subfile{図:detail-app-cpu/図:detail-app-cpu}
 
-    各ページング手法において、CPU使用率はほぼ同様で、約70\%から90\%の範囲で推移していることが示されている。
+    各ページング手法において, CPU使用率はほぼ同様で, 約70\%から90\%の範囲で推移していることが示されている.
 
-    図\ref{fig:each-paging-db-cpu-app_1_1024-db_1_1024}では、イベント数に対するDBサーバーコンテナのCPU使用率を比較する。
+    図\ref{fig:each-paging-db-cpu-app_1_1024-db_1_1024}では, イベント数に対するDBサーバーコンテナのCPU使用率を比較する.
 
     \subfile{図:detail-db-cpu/図:detail-db-cpu}
 
-    この結果から、DBサーバーのCPU使用率においても、各ページング手法間で顕著な違いは確認されなかった。
+    この結果から, DBサーバーのCPU使用率においても, 各ページング手法間で顕著な違いは確認されなかった.
 
     \subsubsubsection{イベント数とメモリ使用量の関係}\label{subsubsubsec:result-each-paging-only-limit-mem}
 
-    図\ref{fig:each-paging-app-mem-app_1_1024-db_1_1024}では、イベント数に対するアプリケーションサーバーコンテナのメモリ使用量を比較する。
+    図\ref{fig:each-paging-app-mem-app_1_1024-db_1_1024}では, イベント数に対するアプリケーションサーバーコンテナのメモリ使用量を比較する.
 
     \subfile{図:detail-app-mem/図:detail-app-mem}
 
-    この図によると、メモリ使用量は各ページング手法間で大きな違いはなく、一貫した傾向が観察された。
+    この図によると, メモリ使用量は各ページング手法間で大きな違いはなく, 一貫した傾向が観察された.
 
-    図\ref{fig:each-paging-db-mem-app_1_1024-db_1_1024}では、イベント数に対するDBサーバーコンテナのメモリ使用量を比較する。
+    図\ref{fig:each-paging-db-mem-app_1_1024-db_1_1024}では, イベント数に対するDBサーバーコンテナのメモリ使用量を比較する.
 
     \subfile{図:detail-db-mem/図:detail-db-mem}
 
-    この結果から、DBサーバーにおいても、メモリ使用量は各ページング手法間で顕著な違いが見られなかった。
+    この結果から, DBサーバーにおいても, メモリ使用量は各ページング手法間で顕著な違いが見られなかった.
 
     \subsubsubsection{イベント数とディスク書き込みの関係}\label{subsubsubsec:result-each-paging-only-limit-disk-in}
 
-    図\ref{fig:each-paging-app-disk-in-app_1_1024-db_1_1024}では、イベント数に対するアプリケーションサーバーコンテナのディスク書き込み量を比較する。
+    図\ref{fig:each-paging-app-disk-in-app_1_1024-db_1_1024}では, イベント数に対するアプリケーションサーバーコンテナのディスク書き込み量を比較する.
 
     \subfile{図:detail-app-disk-in/図:detail-app-disk-in}
 
-    この図から、ディスク書き込み量においても、各ページング手法間で大きな差は見られず、全ての手法で仮想メモリの使用が一貫していることがわかる。
+    この図から, ディスク書き込み量においても, 各ページング手法間で大きな差は見られず, 全ての手法で仮想メモリの使用が一貫していることがわかる.
 
 \end{document}

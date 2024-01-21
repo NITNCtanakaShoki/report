@@ -3,30 +3,30 @@
 \begin{document}
     \subsubsection{特定のCPU制限とメモリ制限下の検証結果}\label{subsubsec:result-chunk-only-limit}
 
-    Web APIサーバーのアプリケーションサーバーコンテナをCPU制限100\%、メモリ制限1024MBとし、DBサーバーも同様の制限を設定した状態での実験結果を示す。
+    Web APIサーバーのアプリケーションサーバーコンテナをCPU制限100\%, メモリ制限1024MBとし, DBサーバーも同様の制限を設定した状態での実験結果を示す.
 
     \subsubsubsection{イベント数とサーバー内処理時間の関係}\label{subsubsubsec:result-chunk-only-limit-server-time}
 
-    図\ref{fig:chunk-cpu-app_1_1024-db_1_1024}に、イベント数に対するサーバー内処理時間の関係を示す。チャンク処理では、どの程度のまとまりごとに処理を行うか設定できるが、ここではイベント数を10、100、1000、10000ごとに処理を行った場合の結果を示す。
+    図\ref{fig:chunk-cpu-app_1_1024-db_1_1024}に, イベント数に対するサーバー内処理時間の関係を示す. チャンク処理では, どの程度のまとまりごとに処理を行うか設定できるが, ここではイベント数を10, 100, 1000, 10000ごとに処理を行った場合の結果を示す.
 
     \subfile{図:detail-server-time/図:detail-server-time}
 
-    チャンク処理を行なった場合、まとまりの大きさによるサーバー内処理時間の変化はなく、またストリーミング処理とほぼ変わらない形状のグラフができた。しかし、サーバー内処理時間はストリーミング処理の方が小さいことが分かった。
+    チャンク処理を行なった場合, まとまりの大きさによるサーバー内処理時間の変化はなく, またストリーミング処理とほぼ変わらない形状のグラフができた. しかし, サーバー内処理時間はストリーミング処理の方が小さいことが分かった.
 
     \subsubsubsection{イベント数とCPU使用率の関係}\label{subsubsubsec:result-chunk-only-limit-server-cpu}
 
-    図\ref{fig:chunk-cpu-app_1_1024-db_1_1024}に、イベント数に対するアプリケーションサーバーコンテナのCPU使用率の関係を示す。
+    図\ref{fig:chunk-cpu-app_1_1024-db_1_1024}に, イベント数に対するアプリケーションサーバーコンテナのCPU使用率の関係を示す.
 
     \subfile{図:detail-cpu/図:detail-cpu}
 
-    図\ref{fig:chunk-cpu-app_1_1024-db_1_1024}から、まとまりの大きさによるアプリケーションコンテナのCPU使用率に影響はないことがわかった。
+    図\ref{fig:chunk-cpu-app_1_1024-db_1_1024}から, まとまりの大きさによるアプリケーションコンテナのCPU使用率に影響はないことがわかった.
 
     \subsubsubsection{イベント数とメモリ使用量の関係}\label{subsubsubsec:result-chunk-only-limit-server-memory}
 
-    図\ref{fig:chunk-mem-app_1_1024-db_1_1024}に、イベント数に対するアプリケーションサーバーコンテナのメモリ使用量の関係を示す。
+    図\ref{fig:chunk-mem-app_1_1024-db_1_1024}に, イベント数に対するアプリケーションサーバーコンテナのメモリ使用量の関係を示す.
 
     \subfile{図:detail-mem/図:detail-mem}
 
-    アプリケーションコンテナのメモリ使用量の観点でも、まとまりの大きさによる影響は見られなかった。
+    アプリケーションコンテナのメモリ使用量の観点でも, まとまりの大きさによる影響は見られなかった.
 
 \end{document}

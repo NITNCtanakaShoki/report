@@ -3,34 +3,34 @@
 \begin{document}
     \subsubsection{アプリケーションサーバーのメモリ制限を変更した場合の検証結果}\label{subsubsec:result-paging-offset-change-app-memory}
 
-    本セクションでは、Web APIサーバーのアプリケーションサーバーコンテナのCPU制限を400\%と設定し、DBサーバーのCPU制限を100\%、メモリ制限を1024MBに固定した上で、アプリケーションサーバーのメモリ制限を1024MB、2048MB、
+    本セクションでは, Web APIサーバーのアプリケーションサーバーコンテナのCPU制限を400\%と設定し, DBサーバーのCPU制限を100\%, メモリ制限を1024MBに固定した上で, アプリケーションサーバーのメモリ制限を1024MB, 2048MB,
 
-    4096MB、8192MBに変更した際の実験結果を報告する。
+    4096MB, 8192MBに変更した際の実験結果を報告する.
 
     \subsubsubsection{サーバー内処理時間}
 
-    図\ref{fig:paging-offset-change-app-memory-limit-server-time-app_4_db_1_1024}では、メモリ制限の変更に伴うサーバー内処理時間の変化を示している。
+    図\ref{fig:paging-offset-change-app-memory-limit-server-time-app_4_db_1_1024}では, メモリ制限の変更に伴うサーバー内処理時間の変化を示している.
 
     \subfile{図:app-server-time/図:app-server-time}
 
-    図\ref{fig:paging-offset-change-app-memory-limit-server-time-app_4_db_1_1024}から、メモリ制限の変更がサーバー内処理時間に顕著な影響を与えないことが観察された。
+    図\ref{fig:paging-offset-change-app-memory-limit-server-time-app_4_db_1_1024}から, メモリ制限の変更がサーバー内処理時間に顕著な影響を与えないことが観察された.
 
     \subsubsubsection{メモリ使用量}
 
-    図\ref{fig:paging-offset-change-app-memory-limit-app-memory-app_4_db_1_1024}では、メモリ制限の変更によるアプリケーショ
+    図\ref{fig:paging-offset-change-app-memory-limit-app-memory-app_4_db_1_1024}では, メモリ制限の変更によるアプリケーショ
 
-    ンコンテナのメモリ使用量の変動を示す。
+    ンコンテナのメモリ使用量の変動を示す.
 
     \subfile{図:app-memory/図:app-memory}
 
-    図\ref{fig:paging-offset-change-app-memory-limit-app-memory-app_4_db_1_1024}の結果は、異なるメモリ制限での形状が似ているが、細かい数値には違いが見られる。このことは、計測方法に潜在的な問題があるか、またはメモリ使用量に影響を及ぼす他の要因が存在する可能性を示唆している。
+    図\ref{fig:paging-offset-change-app-memory-limit-app-memory-app_4_db_1_1024}の結果は, 異なるメモリ制限での形状が似ているが, 細かい数値には違いが見られる. このことは, 計測方法に潜在的な問題があるか, またはメモリ使用量に影響を及ぼす他の要因が存在する可能性を示唆している.
 
     \subsubsubsection{アプリケーションのディスク使用量}
 
-    図\ref{fig:paging-offset-change-app-memory-limit-app-disk-in-app_1024-db_1_1024}では、メモリ制限を変化させた際のアプリケーションのディスク書き込み量について報告する。
+    図\ref{fig:paging-offset-change-app-memory-limit-app-disk-in-app_1024-db_1_1024}では, メモリ制限を変化させた際のアプリケーションのディスク書き込み量について報告する.
 
     \subfile{図:app-disk-in/図:app-disk-in}
 
-    この結果も、図\ref{fig:stream-change-app-memory-limit-app-disk-in-app_4_db_1_1024}と形状が類似しており、計測方法に問題がある可能性が考えられる。
+    この結果も, 図\ref{fig:stream-change-app-memory-limit-app-disk-in-app_4_db_1_1024}と形状が類似しており, 計測方法に問題がある可能性が考えられる.
 
 \end{document}
