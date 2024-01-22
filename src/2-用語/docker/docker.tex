@@ -3,21 +3,24 @@
 \begin{document}
     \subsection{Docker}\label{subsec:phraseology-docker}
 
-    Dockerとは, アプリケーションの開発, 移動, 実行するためのプラットフォームである. 開発環境や実行環境のポータビリティを向上させるために使われることが多いが, 本研究では1つのマシン上でアプリケーションサーバーやDBサーバーをコンテナとして立ち上げ, それぞれでCPU使用率やメモリ使用量を計測するために使用する. \cite{Docker概要}
+    Dockerは、アプリケーションの開発、移動、実行を容易にするプラットフォームである。開発環境や実行環境のポータビリティを向上させるために広く使われている。本研究では、1つのマシン上でアプリケーションサーバーやDBサーバーをコンテナとして立ち上げ、CPU使用率やメモリ使用量の計測にDockerを使用する。\cite{Docker概要}
 
     \subsubsection{コンテナのCPU制限}\label{subsubsec:phraseology-docker-cpu-limit}
 
-    本研究では, dockerの機能を用いてコンテナに対してCPU制限を行う. その際には, \texttt{limits}と\texttt{reservations}の両方に設定する. \cite{Docker制限}
+    Dockerでは、CPUやメモリなどのリソースをデフォルトで無制限に使用できる。そのため、コンテナ内で動作するアプリケーションに悪意のあるリクエストが送信された場合、ホストのリソースを過剰に消費するリスクがある。Dockerでは、一部のコンテナが高負荷を受けても他のコンテナに影響が及ばないように、コンテナが利用できるリソースの制限を設定できる。\cite{DockerKubernetes}
+
+    本研究では、dockerの機能を用いてコンテナにCPU制限を設ける。この設定には、\texttt{limits}と\texttt{reservations}の両方を使用する。\cite{Docker制限}
 
     \subsubsection{コンテナのメモリ制限}\label{subsubsec:phraseology-docker-memory-limit}
 
-    本研究では, dockerの機能を用いてコンテナに対してメモリ制限を行う. その際には, \texttt{limits}と\texttt{reservations}の両方に設定する. \cite{Docker制限}
+    本研究では、dockerの機能を用いてコンテナにメモリ制限を設定する。この設定には、\texttt{limits}と\texttt{reservations}の両方を使用する。\cite{Docker制限}
+
+    コンテナが設定されたメモリ制限を超えると、カーネルのOOM(Out-Of-Memory) killerによりコンテナ内のプロセスが強制終了されることがある。スワップパーティションが存在する場合は、メモリ使用量とスワップパーティション使用量の合計が\texttt{--memory-swap}で指定した値（デフォルトでは\texttt{--memory}の2倍）を超えるまではプロセスは終了されない。\cite{DockerKubernetes}
 
     \subsubsection{docker container statsコマンド}\label{subsubsec:phraseology-docker-container-stats}
 
-    \texttt{docker container stats}コマンドを用いて, 実行中のコンテナからライブ・データ・ストリームを取得することができる. 本実験では, このコマンドを用いてコンテナのCPU使用率やメモリ使用量を計測する.
+    \texttt{docker container stats}コマンドにより、実行中のコンテナからリアルタイムのデータストリームを取得できる。本研究では、このコマンドを使用してコンテナのCPU使用率やメモリ使用量を計測する。\cite{Docker Stats}
 
-    このコマンドでは, 0.5秒前後に1度, CPU使用率, メモリ使用量, ブロックI/O, ネットワークI/O, プロセス数などを取得できる. これを随時取得し計測用データベースに保存して, アクセス記録と結合することで実験データを得る. \cite{Docker Stats}
-
+    このコマンドを実行すると、各コンテナのCPUコア使用率、メモリ使用量、ネットワークI/O、ブロックI/O、PID数が表示される。SIGINT（Ctrl+C）などのシグナルを受信するまで終了せず、500ミリ秒ごとにリソース使用状況を更新しながら監視を続ける。\cite{DockerKubernetes}
 
 \end{document}
