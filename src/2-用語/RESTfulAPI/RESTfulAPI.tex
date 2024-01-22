@@ -3,7 +3,28 @@
 \begin{document}
     \subsection{RESTful API}\label{subsec:phraseology-restful-api}
 
-    RESTful APIとは, RESTと呼ばれる設計原則に従って設計されたHTTPベースのAPIのことである. 具体的には大まかに以下のような特性を備えている.
-    Open APIという定義仕様を用いて, APIの仕様を記述することができる.
+    RESTful APIは、RESTと呼ばれる設計原則に従って設計されたHTTPベースのAPIである。具体的には、以下のような特性を備えている。\cite{RealWorldHTTP}
+
+    \begin{itemize}
+        \item ウェブサーバーを通じてAPIが提供されている。
+        \item 例えば\texttt{GET /users/[ユーザーID]/repositories}のように、パスに対してHTTPメソッドを送信することでサービスを得る。
+        \item APIの成功可否はHTTPステータスコードとしてクライアントに通知される。
+        \item URLはリソースの場所を示し、サービスの顔として重要である。
+        \item 必要に応じて、GETパラメータやPOSTのボディなどの追加情報を送信することがある。
+        \item サーバーからのレスポンスには、JSONやXMLのような構造化されたテキスト、画像データなどが含まれることが多い。
+    \end{itemize}
+
+    クライアント視点では、サーバーに対して以下のようなことが期待できる。\cite{RealWorldHTTP}
+
+    \begin{itemize}
+        \item URLはリソースの階層を示すパスであり、主に名詞で構成されている。
+        \item リソースに対してHTTPメソッドを送信することで、リソースの取得、更新、追加などの操作を行う。
+        \item ステータスコードにより、リクエストが正しく処理されたかどうかを判定できる。
+        \item GETメソッドは何度実行してもリソースの状態を変更しない。
+        \item クライアント側では、各リクエストは独立しており、管理するべきステートは存在しない。
+        \item トランザクションは存在しない。
+    \end{itemize}
+
+    Open APIという定義仕様を用いて、APIの仕様を記述することができる。OpenAPIの使用は、コンピューターによる自動処理（コードジェネレーター、ドキュメントレンダリングなど）を想定している。APIはYAMLまたはJSONの形式で表現することが可能である。\cite{APIデザインパターン}
 
 \end{document}
