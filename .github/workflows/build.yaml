@@ -26,7 +26,7 @@ jobs:
         run: echo "::set-output name=tag::${GITHUB_REF#refs/tags/}"
 
       - name: Rename PDF
-        run: mv main.pdf report_${{ steps.date.outputs.date }}_${{ steps.get_tag.outputs.tag }}.pdf
+        run: mv so20_tanaka.pdf report_${{ steps.date.outputs.date }}_${{ steps.get_tag.outputs.tag }}.pdf
 
       - name: Release
         uses: softprops/action-gh-release@v1
