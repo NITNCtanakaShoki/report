@@ -19,3 +19,6 @@ RUN apt-get update \
     libfontconfig1 \
   && rm -rf /var/lib/apt/lists/*
 RUN tlmgr install collection-xetex ctex
+
+# PDFの結合
+RUN apt-get update && apt-get install -y poppler-utils

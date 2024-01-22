@@ -8,7 +8,7 @@ services:
     volumes:
       - .:/workdir
     working_dir: /workdir
-    command: sh -c 'latexmk -C main.tex && latexmk -shell-escape main.tex && latexmk -c main.tex'
+    command: sh -c 'latexmk -C main.tex && latexmk -shell-escape main.tex && latexmk -c main.tex && pdfunite title-page.pdf main.pdf so20_tanaka.pdf'
   sub:
     image: my-texlive:latest
     build:
